@@ -16,10 +16,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16"
-            fx:controller="sample.Controller">
+            fx:controller="Main.Controller">
     <children>
         <BorderPane layoutX="107.0" layoutY="81.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -63,7 +62,7 @@
                     <top>
                         <ToolBar id="searchByTitle" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <items>
-                                <Button id="addBookButton" mnemonicParsing="false" text="Add Book"/>
+                                <Button id="addBookButton" mnemonicParsing="false" onAction="#addBook" text="Add Book"/>
                                 <Button id="removeBookButton" mnemonicParsing="false" text="Remove Book"/>
                                 <TextField id="searchField"/>
                                 <RadioButton mnemonicParsing="false" selected="true" text="Search by title">
