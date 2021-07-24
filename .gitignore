@@ -1,6 +1,4 @@
-.gitignore
 /BookJar.iml
-/out/production/BookJar/sample/Controller.class
-/JavaFxApplication.iml
 /.idea/
+/JavaFxApplication.iml
 /out/
