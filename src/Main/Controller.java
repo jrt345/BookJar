@@ -20,8 +20,9 @@ public class Controller implements Initializable {
     private static Stage stage;
 
     private static int index = 0;
-    private static Book book;
     private static boolean initial = true;
+    private static String notes = "";
+
     @FXML
     private TableView<Book> bookTable;
     @FXML
@@ -33,8 +34,8 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Book, String> genreColumn;
     @FXML
-    private TableColumn<Book, String> notesColumn;
-    private static String notes = "";
+    private TableColumn<Book, Button> notesColumn;
+
     @FXML
     private TextField titleField;
     @FXML
@@ -63,18 +64,20 @@ public class Controller implements Initializable {
     @FXML
     private void addBook(ActionEvent event) {
         index++;
-        book = new Book();
+        Book book = new Book();
         book.setIndex(index);
         book.setTitle(titleField.getText());
         book.setAuthor(authorField.getText());
         book.setGenre(genreField.getText());
+        Button button = new Button("View notes");
+        book.setNotesButton(button);
+        notesColumn.setStyle("-fx-alignment: CENTER;");
         book.setNotes(notes);
 
         titleField.clear();
         authorField.clear();
         genreField.clear();
         notes = "";
-
 
         bookTable.getItems().add(book);
     }
@@ -90,7 +93,6 @@ public class Controller implements Initializable {
         notesArea.setText(notes);
     }
 
-
     @FXML
     private void saveNotes() {
         notes = notesArea.getText();
@@ -105,7 +107,7 @@ public class Controller implements Initializable {
             titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
             authorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
             genreColumn.setCellValueFactory(new PropertyValueFactory<>("Genre"));
-            notesColumn.setCellValueFactory(new PropertyValueFactory<>("Notes"));
+            notesColumn.setCellValueFactory(new PropertyValueFactory<>("NotesButton"));
         }
 
         if (notesArea != null) {

@@ -2,6 +2,7 @@ package Main;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Button;
 
 public class Book {
 
@@ -10,17 +11,19 @@ public class Book {
     private SimpleStringProperty author;
     private SimpleStringProperty genre;
     private SimpleStringProperty notes;
+    private Button notesButton;
 
     public Book() {
-        this(0, "", "", "", "");
+        this(0, "", "", "", "", new Button());
     }
 
-    public Book(int index, String title, String author, String genre, String notes) {
+    public Book(int index, String title, String author, String genre, String notes, Button notesButton) {
         this.index = new SimpleIntegerProperty(index);
         this.title = new SimpleStringProperty(title);
         this.author = new SimpleStringProperty(author);
         this.genre = new SimpleStringProperty(genre);
         this.notes = new SimpleStringProperty(notes);
+        this.notesButton = notesButton;
     }
 
     public int getIndex() {
@@ -60,6 +63,14 @@ public class Book {
     }
 
     public void setNotes(String notes) {
-        this.notes = new SimpleStringProperty(notes);
+        this.notes.set(notes);
+    }
+
+    public Button getNotesButton() {
+        return notesButton;
+    }
+
+    public void setNotesButton(Button notesButton) {
+        this.notesButton = notesButton;
     }
 }
