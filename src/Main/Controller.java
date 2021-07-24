@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -61,26 +62,9 @@ public class Controller implements Initializable {
         stage.showAndWait();
     }
 
+    private static final ArrayList<Book> bookArrayList = new ArrayList<>();
     @FXML
-    private void addBook(ActionEvent event) {
-        index++;
-        Book book = new Book();
-        book.setIndex(index);
-        book.setTitle(titleField.getText());
-        book.setAuthor(authorField.getText());
-        book.setGenre(genreField.getText());
-        Button button = new Button("View notes");
-        book.setNotesButton(button);
-        notesColumn.setStyle("-fx-alignment: CENTER;");
-        book.setNotes(notes);
-
-        titleField.clear();
-        authorField.clear();
-        genreField.clear();
-        notes = "";
-
-        bookTable.getItems().add(book);
-    }
+    private TextArea notesAreaView;
 
     @FXML
     private void cancel(ActionEvent event) {
@@ -99,6 +83,30 @@ public class Controller implements Initializable {
         stage.close();
     }
 
+    @FXML
+    private void addBook(ActionEvent event) {
+        index++;
+        bookArrayList.add(new Book());
+        bookArrayList.get(index - 1).setIndex(index);
+        bookArrayList.get(index - 1).setTitle(titleField.getText());
+        bookArrayList.get(index - 1).setAuthor(authorField.getText());
+        bookArrayList.get(index - 1).setGenre(genreField.getText());
+
+        Button button = new Button("View notes");
+        bookArrayList.get(index - 1).setNotesButton(button);
+        bookArrayList.get(index - 1).initializeNotesButton();
+
+        bookArrayList.get(index - 1).setNotes(notes);
+
+        notesColumn.setStyle("-fx-alignment: CENTER;");
+        titleField.clear();
+        authorField.clear();
+        genreField.clear();
+        notes = "";
+
+        bookTable.getItems().add(bookArrayList.get(index - 1));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (initial) {
@@ -112,6 +120,11 @@ public class Controller implements Initializable {
 
         if (notesArea != null) {
             notesArea.setText(notes);
+        }
+
+        if (Book.getNoteIndex() > 0) {
+            notesAreaView.setText(bookArrayList.get(Book.getNoteIndex() - 1).getNotes());
+            Book.setNoteIndex(0);
         }
     }
 }
