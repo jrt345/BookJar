@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -13,6 +14,7 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -46,23 +48,11 @@
                     </menus>
                 </MenuBar>
             </top>
-            <bottom>
-                <Pane prefHeight="31.0" prefWidth="900.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label layoutX="14.0" layoutY="-1.0" prefHeight="31.0" prefWidth="141.0" text="BookJar 1.0">
-                            <font>
-                                <Font name="Trebuchet MS Bold" size="25.0"/>
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
-            </bottom>
             <center>
                 <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <top>
                         <ToolBar id="searchByTitle" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <items>
-                                <Button id="addBookButton" mnemonicParsing="false" onAction="#addBook" text="Add Book"/>
                                 <Button id="removeBookButton" mnemonicParsing="false" text="Remove Book"/>
                                 <TextField id="searchField"/>
                                 <RadioButton mnemonicParsing="false" selected="true" text="Search by title">
@@ -92,6 +82,36 @@
                     </center>
                 </BorderPane>
             </center>
+            <bottom>
+                <BorderPane prefHeight="80.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                    <bottom>
+                        <Pane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Label layoutX="14.0" layoutY="5.0" prefHeight="31.0" prefWidth="141.0"
+                                       text="BookJar 1.0">
+                                    <font>
+                                        <Font name="Trebuchet MS Bold" size="25.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                    </bottom>
+                    <top>
+                        <HBox prefHeight="40.0" prefWidth="900.0" spacing="5.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <TextField fx:id="titleField" promptText="Title" HBox.hgrow="SOMETIMES"/>
+                                <TextField fx:id="authorField" promptText="Author" HBox.hgrow="SOMETIMES"/>
+                                <TextField fx:id="genreField" promptText="Genre" HBox.hgrow="SOMETIMES"/>
+                                <Button mnemonicParsing="false" onAction="#openNotes" prefWidth="75.0" text="Notes"/>
+                                <Button mnemonicParsing="false" onAction="#addBook" prefWidth="75.0" text="Add book"/>
+                            </children>
+                            <padding>
+                                <Insets left="5.0" right="5.0" top="7.5"/>
+                            </padding>
+                        </HBox>
+                    </top>
+                </BorderPane>
+            </bottom>
         </BorderPane>
     </children>
 </AnchorPane>

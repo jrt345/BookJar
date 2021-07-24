@@ -1,7 +1,5 @@
 package Main;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    public static Stage stage;
+    private static Stage stage;
 
     private static int index = 0;
     private static Book book;
@@ -36,57 +34,67 @@ public class Controller implements Initializable {
     private TableColumn<Book, String> genreColumn;
     @FXML
     private TableColumn<Book, String> notesColumn;
-    @FXML
-    private TextArea notesField;
+    private static String notes = "";
     @FXML
     private TextField titleField;
     @FXML
     private TextField authorField;
     @FXML
     private TextField genreField;
+    @FXML
+    private TextArea notesArea;
 
     @FXML
-    public void quitProgram(ActionEvent event) {
+    private void quitProgram(ActionEvent event) {
         Main.stage.close();
     }
 
     @FXML
-    public void addBook(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("newBook.fxml"));
+    private void openNotes(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("notes.fxml"));
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Hello World");
-        stage.setScene(new Scene(root, 450, 450));
+        stage.setTitle("Notes");
+        stage.setScene(new Scene(root, 450, 375));
         stage.setResizable(false);
         stage.showAndWait();
-
-        bookTable.getItems().add(book);
     }
 
     @FXML
-    public void addBookToTable(ActionEvent event) {
+    private void addBook(ActionEvent event) {
         index++;
         book = new Book();
         book.setIndex(index);
         book.setTitle(titleField.getText());
         book.setAuthor(authorField.getText());
         book.setGenre(genreField.getText());
-        book.setNotes(notesField.getText());
+        book.setNotes(notes);
 
+        titleField.clear();
+        authorField.clear();
+        genreField.clear();
+        notes = "";
+
+
+        bookTable.getItems().add(book);
+    }
+
+    @FXML
+    private void cancel(ActionEvent event) {
         stage.close();
     }
 
     @FXML
-    void cancel(ActionEvent event) {
-
+    private void reset(ActionEvent event) {
+        notes = "";
+        notesArea.setText(notes);
     }
 
+
     @FXML
-    void reset(ActionEvent event) {
-        titleField.setText("");
-        authorField.setText("");
-        genreField.setText("");
-        notesField.setText("");
+    private void saveNotes() {
+        notes = notesArea.getText();
+        stage.close();
     }
 
     @Override
@@ -98,6 +106,10 @@ public class Controller implements Initializable {
             authorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
             genreColumn.setCellValueFactory(new PropertyValueFactory<>("Genre"));
             notesColumn.setCellValueFactory(new PropertyValueFactory<>("Notes"));
+        }
+
+        if (notesArea != null) {
+            notesArea.setText(notes);
         }
     }
 }
