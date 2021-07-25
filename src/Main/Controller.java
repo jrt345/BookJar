@@ -62,10 +62,6 @@ public class Controller implements Initializable {
         stage.showAndWait();
     }
 
-    private static final ArrayList<Book> bookArrayList = new ArrayList<>();
-    @FXML
-    private TextArea notesAreaView;
-
     @FXML
     private void cancel(ActionEvent event) {
         stage.close();
@@ -82,6 +78,8 @@ public class Controller implements Initializable {
         notes = notesArea.getText();
         stage.close();
     }
+
+    private static final ArrayList<Book> bookArrayList = new ArrayList<>();
 
     @FXML
     private void addBook(ActionEvent event) {
@@ -107,6 +105,25 @@ public class Controller implements Initializable {
         bookTable.getItems().add(bookArrayList.get(index - 1));
     }
 
+    @FXML
+    private TextArea notesAreaView;
+
+    @FXML
+    private void cancelNotesView(ActionEvent event) {
+        Book.closeStage();
+    }
+
+    @FXML
+    private void resetNotesView(ActionEvent event) {
+        notesAreaView.setText("");
+    }
+
+    @FXML
+    private void saveNotesView(ActionEvent event) {
+        bookArrayList.get(Book.getNoteIndex() - 1).setNotes(notesAreaView.getText());
+        Book.closeStage();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (initial) {
@@ -124,7 +141,6 @@ public class Controller implements Initializable {
 
         if (Book.getNoteIndex() > 0) {
             notesAreaView.setText(bookArrayList.get(Book.getNoteIndex() - 1).getNotes());
-            Book.setNoteIndex(0);
         }
     }
 }
