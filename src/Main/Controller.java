@@ -108,6 +108,12 @@ public class Controller implements Initializable {
         notes = "";
 
         bookTable.getItems().add(bookArrayList.get(index - 1));
+
+        try {
+            ReadWriteFile.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -127,6 +133,12 @@ public class Controller implements Initializable {
     private void saveNotesView(ActionEvent event) {
         bookArrayList.get(Book.getNoteIndex() - 1).setNotes(notesAreaView.getText());
         Book.closeStage();
+
+        try {
+            ReadWriteFile.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ObservableList<Book> getBook() {

@@ -31,5 +31,13 @@ public class Main extends Application {
         stage.setTitle("BookJar");
         stage.setScene(new Scene(root, 900, 600));
         stage.show();
+
+        stage.setOnCloseRequest(e -> {
+            try {
+                ReadWriteFile.saveData();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 }
