@@ -1,10 +1,14 @@
 package Main;
 
+import ReadWrite.ReadWriteFile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Main extends Application {
 
@@ -12,10 +16,16 @@ public class Main extends Application {
         launch(args);
     }
 
-    static Stage stage;
+    public static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        try {
+            ReadWriteFile.loadData();
+        } catch (IOException e) {
+            FileOutputStream fileOut = new FileOutputStream("userbooks.dat");
+            fileOut.close();
+        }
         Parent root = FXMLLoader.load(getClass().getResource("bookJar.fxml"));
         stage = new Stage();
         stage.setTitle("BookJar");

@@ -64,16 +64,18 @@ public class Book {
     public String getNotes() {
         return notes.get();
     }
-    private static int noteIndex;
 
     public Button getNotesButton() {
         return notesButton;
     }
+
     public void setNotesButton(Button notesButton) {
         this.notesButton = notesButton;
     }
 
     private static Stage stage;
+
+    private static int noteIndex;
 
     public static int getNoteIndex() {
         return noteIndex;

@@ -1,6 +1,8 @@
 package Main;
 
 import ReadWrite.ReadWriteFile;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -95,14 +97,11 @@ public class Controller implements Initializable {
         bookArrayList.get(index - 1).setTitle(titleField.getText());
         bookArrayList.get(index - 1).setAuthor(authorField.getText());
         bookArrayList.get(index - 1).setGenre(genreField.getText());
-
-        Button button = new Button("View notes");
-        bookArrayList.get(index - 1).setNotesButton(button);
-        bookArrayList.get(index - 1).initializeNotesButton();
-
         bookArrayList.get(index - 1).setNotes(notes);
 
-        notesColumn.setStyle("-fx-alignment: CENTER;");
+        bookArrayList.get(index - 1).setNotesButton(new Button("View notes"));
+        bookArrayList.get(index - 1).initializeNotesButton();
+
         titleField.clear();
         authorField.clear();
         genreField.clear();
@@ -130,6 +129,28 @@ public class Controller implements Initializable {
         Book.closeStage();
     }
 
+    public ObservableList<Book> getBook() {
+        ObservableList<Book> bookList = FXCollections.observableArrayList();
+        index = ReadWriteFile.bookArrayList.size();
+
+        for (int i = 0; i < ReadWriteFile.bookArrayList.size(); i++) {
+            Book book = new Book();
+            book.setIndex(ReadWriteFile.bookArrayList.get(i).getIndex());
+            book.setTitle(ReadWriteFile.bookArrayList.get(i).getTitle());
+            book.setAuthor(ReadWriteFile.bookArrayList.get(i).getAuthor());
+            book.setGenre(ReadWriteFile.bookArrayList.get(i).getGenre());
+            book.setNotes(ReadWriteFile.bookArrayList.get(i).getNotes());
+
+            book.setNotesButton(new Button("View notes"));
+            book.initializeNotesButton();
+
+            bookArrayList.add(book);
+            bookList.add(book);
+        }
+
+        return bookList;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (initial) {
@@ -139,6 +160,9 @@ public class Controller implements Initializable {
             authorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
             genreColumn.setCellValueFactory(new PropertyValueFactory<>("Genre"));
             notesColumn.setCellValueFactory(new PropertyValueFactory<>("NotesButton"));
+            notesColumn.setStyle("-fx-alignment: CENTER;");
+
+            bookTable.setItems(getBook());
         }
 
         if (notesArea != null) {
