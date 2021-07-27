@@ -1,5 +1,6 @@
 package Main;
 
+import ReadWrite.ReadWriteFile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,10 +47,7 @@ public class Controller implements Initializable {
     @FXML
     private TextArea notesArea;
 
-    @FXML
-    private void quitProgram(ActionEvent event) {
-        Main.stage.close();
-    }
+    public static final ArrayList<Book> bookArrayList = new ArrayList<>();
 
     @FXML
     private void openNotes(ActionEvent event) throws IOException {
@@ -79,7 +77,15 @@ public class Controller implements Initializable {
         stage.close();
     }
 
-    private static final ArrayList<Book> bookArrayList = new ArrayList<>();
+    @FXML
+    private void quitProgram(ActionEvent event) {
+        Main.stage.close();
+        try {
+            ReadWriteFile.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void addBook(ActionEvent event) {
