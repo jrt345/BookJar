@@ -3,7 +3,7 @@ package main.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import main.Book;
+import main.book.Book;
 
 public class NotesViewerController {
 
