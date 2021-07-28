@@ -1,6 +1,5 @@
-package Main;
+package main;
 
-import ReadWrite.ReadWriteFile;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import main.controllers.NotesViewerController;
+import main.readwrite.ReadWriteFile;
 
 import java.io.IOException;
 
@@ -80,7 +81,7 @@ public class Book {
     }
 
     private void openNoteViewer() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Book.class.getResource("notesViewer.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notesViewer.fxml"));
         Parent root = fxmlLoader.load();
 
         NotesViewerController notesViewerController = fxmlLoader.getController();

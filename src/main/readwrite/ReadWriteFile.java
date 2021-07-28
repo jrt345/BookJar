@@ -1,6 +1,6 @@
-package ReadWrite;
+package main.readwrite;
 
-import Main.Controller;
+import main.controllers.Controller;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package ReadWrite;
+package main.readwrite;
 
 import java.io.Serializable;
 

@@ -1,6 +1,5 @@
-package Main;
+package main.controllers;
 
-import ReadWrite.ReadWriteFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import main.Book;
+import main.Main;
+import main.readwrite.ReadWriteFile;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,7 +46,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void openNotes(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notes.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("notes.fxml"));
         Parent root = fxmlLoader.load();
 
         NotesController notesController = fxmlLoader.getController();
@@ -148,7 +150,7 @@ public class Controller implements Initializable {
     private void editBook(ActionEvent event) throws IOException {
         int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Book.class.getResource("bookEditor.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("bookEditor.fxml"));
         Parent root = fxmlLoader.load();
 
         BookEditorController bookEditorController = fxmlLoader.getController();

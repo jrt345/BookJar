@@ -1,11 +1,11 @@
-package Main;
+package main;
 
-import ReadWrite.ReadWriteFile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.readwrite.ReadWriteFile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
