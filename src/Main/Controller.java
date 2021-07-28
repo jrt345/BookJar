@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -43,13 +40,6 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Book, Button> notesColumn;
 
-    @FXML
-    private TextField titleField;
-    @FXML
-    private TextField authorField;
-    @FXML
-    private TextField genreField;
-
     public static final ArrayList<Book> bookArrayList = new ArrayList<>();
 
     @FXML
@@ -72,6 +62,19 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    private MenuItem editContext;
+    @FXML
+    private MenuItem deleteContext;
+    @FXML
+    private MenuItem viewContext;
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextField authorField;
+    @FXML
+    private TextField genreField;
+
+    @FXML
     private void quitProgram(ActionEvent event) {
         Main.stage.close();
         try {
@@ -80,13 +83,6 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    private MenuItem editContext;
-    @FXML
-    private MenuItem deleteContext;
-    @FXML
-    private MenuItem viewContext;
 
     @FXML
     private void addBook(ActionEvent event) {

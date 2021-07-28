@@ -23,18 +23,7 @@ public class NotesViewerController {
     }
 
     @FXML
-    void cancelNotesView(ActionEvent event) {
-        Book.closeStage();
-    }
-
-    @FXML
-    void resetNotesView(ActionEvent event) {
-        notesAreaView.setText("");
-    }
-
-    @FXML
-    void saveNotesView(ActionEvent event) {
-        notes = notesAreaView.getText();
+    void exitNotesView(ActionEvent event) {
         Book.closeStage();
     }
 }

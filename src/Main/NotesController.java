@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 public class NotesController {
 
     private String notes;
+
     @FXML
     private TextArea notesArea;
 
