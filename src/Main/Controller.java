@@ -146,16 +146,27 @@ public class Controller implements Initializable {
         }
     }
 
+    public static Stage editBookStage;
+
     @FXML
     private void editBook(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Book.class.getResource("bookEditor.fxml"));
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Book Editor");
-        stage.setScene(new Scene(root, 450, 450));
-        stage.setResizable(false);
-        stage.setOnCloseRequest(e -> Book.setNoteIndex(0));
-        stage.showAndWait();
+        int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Book.class.getResource("bookEditor.fxml"));
+        Parent root = fxmlLoader.load();
+
+        BookEditorController bookEditorController = fxmlLoader.getController();
+        bookEditorController.setBook(bookArrayList.get(selectedIndex));
+        bookEditorController.setTextFields();
+
+        editBookStage = new Stage();
+        editBookStage.initModality(Modality.APPLICATION_MODAL);
+        editBookStage.setScene(new Scene(root, 450, 450));
+        editBookStage.setResizable(false);
+        editBookStage.showAndWait();
+
+        bookArrayList.set(selectedIndex, bookEditorController.getBook());
+        bookTable.getItems().set(selectedIndex, bookEditorController.getBook());
     }
 
     @FXML

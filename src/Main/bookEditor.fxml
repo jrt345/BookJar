@@ -24,7 +24,7 @@
             <bottom>
                 <ToolBar prefHeight="30.0" prefWidth="450.0" BorderPane.alignment="CENTER">
                     <items>
-                        <Button mnemonicParsing="false" onAction="#saveNotes" prefWidth="50.0" text="Save"/>
+                        <Button mnemonicParsing="false" onAction="#saveBook" prefWidth="50.0" text="Save"/>
                         <Button mnemonicParsing="false" onAction="#reset" prefWidth="50.0" text="Reset"/>
                         <Button mnemonicParsing="false" onAction="#cancel" text="Cancel"/>
                     </items>
@@ -71,9 +71,11 @@
                                         <Font name="Trebuchet MS Bold" size="23.0"/>
                                     </font>
                                 </Label>
-                                <TextField GridPane.columnIndex="1"/>
-                                <TextField prefWidth="357.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                                <TextField prefWidth="357.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <TextField fx:id="titleField" GridPane.columnIndex="1"/>
+                                <TextField fx:id="authorField" prefWidth="357.0" GridPane.columnIndex="1"
+                                           GridPane.rowIndex="1"/>
+                                <TextField fx:id="genreField" prefWidth="357.0" GridPane.columnIndex="1"
+                                           GridPane.rowIndex="2"/>
                             </children>
                         </GridPane>
                     </children>
