@@ -82,6 +82,13 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    private MenuItem editContext;
+    @FXML
+    private MenuItem deleteContext;
+    @FXML
+    private MenuItem viewContext;
+
+    @FXML
     private void addBook(ActionEvent event) {
         index++;
         bookArrayList.add(new Book());
@@ -106,6 +113,49 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if (editContext.isDisable()) {
+            editContext.setDisable(false);
+            deleteContext.setDisable(false);
+            viewContext.setDisable(false);
+        }
+    }
+
+    @FXML
+    private void deleteBook(ActionEvent event) {
+        int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
+
+        index--;
+        bookArrayList.remove(selectedIndex);
+        bookTable.getItems().remove(selectedIndex);
+
+        for (int i = selectedIndex; i < bookArrayList.size(); i++) {
+            bookArrayList.get(i).setIndex(bookArrayList.get(i).getIndex() - 1);
+        }
+
+        try {
+            ReadWriteFile.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (bookArrayList.size() == 0) {
+            editContext.setDisable(true);
+            deleteContext.setDisable(true);
+            viewContext.setDisable(true);
+        }
+    }
+
+    @FXML
+    private void editBook(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewNotes(ActionEvent actionEvent) {
+        int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
+
+        bookArrayList.get(selectedIndex).getNotesButton().fire();
     }
 
     public ObservableList<Book> getBook() {
@@ -142,6 +192,12 @@ public class Controller implements Initializable {
             notesColumn.setStyle("-fx-alignment: CENTER;");
 
             bookTable.setItems(getBook());
+
+            if (bookArrayList.size() == 0) {
+                editContext.setDisable(true);
+                deleteContext.setDisable(true);
+                viewContext.setDisable(true);
+            }
         }
     }
 }
