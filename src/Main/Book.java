@@ -69,7 +69,6 @@ public class Book {
     public Button getNotesButton() {
         return notesButton;
     }
-
     public void setNotesButton(Button notesButton) {
         this.notesButton = notesButton;
     }

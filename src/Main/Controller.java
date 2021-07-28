@@ -167,6 +167,12 @@ public class Controller implements Initializable {
 
         bookArrayList.set(selectedIndex, bookEditorController.getBook());
         bookTable.getItems().set(selectedIndex, bookEditorController.getBook());
+
+        try {
+            ReadWriteFile.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
