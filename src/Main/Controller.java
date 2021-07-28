@@ -9,7 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -105,31 +108,6 @@ public class Controller implements Initializable {
         }
     }
 
-    @FXML
-    private TextArea notesAreaView;
-
-    @FXML
-    private void cancelNotesView(ActionEvent event) {
-        Book.closeStage();
-    }
-
-    @FXML
-    private void resetNotesView(ActionEvent event) {
-        notesAreaView.setText("");
-    }
-
-    @FXML
-    private void saveNotesView(ActionEvent event) {
-        bookArrayList.get(Book.getNoteIndex() - 1).setNotes(notesAreaView.getText());
-        Book.closeStage();
-
-        try {
-            ReadWriteFile.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public ObservableList<Book> getBook() {
         ObservableList<Book> bookList = FXCollections.observableArrayList();
         index = ReadWriteFile.bookArrayList.size();
@@ -164,10 +142,6 @@ public class Controller implements Initializable {
             notesColumn.setStyle("-fx-alignment: CENTER;");
 
             bookTable.setItems(getBook());
-        }
-
-        if (Book.getNoteIndex() > 0) {
-            notesAreaView.setText(bookArrayList.get(Book.getNoteIndex() - 1).getNotes());
         }
     }
 }

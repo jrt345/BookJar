@@ -1,5 +1,6 @@
 package Main;
 
+import ReadWrite.ReadWriteFile;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXMLLoader;
@@ -75,30 +76,32 @@ public class Book {
 
     private static Stage stage;
 
-    private static int noteIndex;
-
-    public static int getNoteIndex() {
-        return noteIndex;
-    }
-
-    public static void setNoteIndex(int index) {
-        noteIndex = index;
-    }
-
     public static void closeStage() {
         stage.close();
-        Book.setNoteIndex(0);
     }
 
-    private static void openNoteViewer() throws IOException {
-        Parent root = FXMLLoader.load(Book.class.getResource("noteViewer.fxml"));
+    private void openNoteViewer() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Book.class.getResource("notesViewer.fxml"));
+        Parent root = fxmlLoader.load();
+
+        NotesViewerController notesViewerController = fxmlLoader.getController();
+        notesViewerController.setNotes(getNotes());
+        notesViewerController.loadNotes();
+
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Notes");
         stage.setScene(new Scene(root, 450, 375));
         stage.setResizable(false);
-        stage.setOnCloseRequest(e -> Book.setNoteIndex(0));
         stage.showAndWait();
+
+        setNotes(notesViewerController.getNotes());
+
+        try {
+            ReadWriteFile.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setNotes(String notes) {
@@ -107,7 +110,6 @@ public class Book {
 
     public void initializeNotesButton() {
         notesButton.setOnAction(event -> {
-            noteIndex = getIndex();
             try {
                 openNoteViewer();
             } catch (IOException e) {
