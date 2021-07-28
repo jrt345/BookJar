@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.readwrite.ReadWriteFile;
+import main.utils.readwrite.ReadWriteFile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

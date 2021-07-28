@@ -13,8 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Main;
-import main.book.Book;
-import main.readwrite.ReadWriteFile;
+import main.utils.Book;
+import main.utils.readwrite.ReadWriteFile;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package main.readwrite;
+package main.utils.readwrite;
 
 import main.controllers.Controller;
 
@@ -28,7 +28,6 @@ public class ReadWriteFile {
     }
 
     public static ArrayList<ReadWriteBook> bookArrayList = new ArrayList<>();
-    ;
 
     public static void loadData() throws IOException, ClassNotFoundException {
         FileInputStream fileIn = new FileInputStream("userbooks.dat");

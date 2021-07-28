@@ -1,4 +1,4 @@
-package main.book;
+package main.utils;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,7 +10,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Main;
 import main.controllers.NotesViewerController;
-import main.readwrite.ReadWriteFile;
+import main.utils.readwrite.ReadWriteFile;
 
 import java.io.IOException;
 
