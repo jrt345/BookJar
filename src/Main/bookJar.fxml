@@ -39,7 +39,6 @@
                     <top>
                         <ToolBar id="searchByTitle" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <items>
-                                <Button id="removeBookButton" mnemonicParsing="false" text="Remove Book"/>
                                 <TextField id="searchField"/>
                                 <RadioButton mnemonicParsing="false" selected="true" text="Search by title">
                                     <toggleGroup>
@@ -67,12 +66,12 @@
                             <contextMenu>
                                 <ContextMenu>
                                     <items>
-                                        <MenuItem fx:id="editContext" mnemonicParsing="false" text="Edit"
-                                                  onAction="#editBook"/>
-                                        <MenuItem fx:id="deleteContext" mnemonicParsing="false" text="Delete"
-                                                  onAction="#deleteBook"/>
-                                        <MenuItem fx:id="viewContext" mnemonicParsing="false" text="View Notes"
-                                                  onAction="#viewNotes"/>
+                                        <MenuItem fx:id="editContext" mnemonicParsing="false" onAction="#editBook"
+                                                  text="Edit"/>
+                                        <MenuItem fx:id="deleteContext" mnemonicParsing="false" onAction="#deleteBook"
+                                                  text="Delete"/>
+                                        <MenuItem fx:id="viewContext" mnemonicParsing="false" onAction="#viewNotes"
+                                                  text="View Notes"/>
                                     </items>
                                 </ContextMenu>
                             </contextMenu>
