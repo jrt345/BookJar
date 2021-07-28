@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    private static Stage stage;
+    public static Stage notesStage;
 
     private static int index = 0;
     private static boolean initial = true;
@@ -46,37 +46,26 @@ public class Controller implements Initializable {
     private TextField authorField;
     @FXML
     private TextField genreField;
-    @FXML
-    private TextArea notesArea;
 
     public static final ArrayList<Book> bookArrayList = new ArrayList<>();
 
     @FXML
     private void openNotes(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("notes.fxml"));
-        stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Notes");
-        stage.setScene(new Scene(root, 450, 375));
-        stage.setResizable(false);
-        stage.showAndWait();
-    }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("notes.fxml"));
+        Parent root = fxmlLoader.load();
 
-    @FXML
-    private void cancel(ActionEvent event) {
-        stage.close();
-    }
+        NotesController notesController = fxmlLoader.getController();
+        notesController.setNotes(notes);
+        notesController.loadNotes();
 
-    @FXML
-    private void reset(ActionEvent event) {
-        notes = "";
-        notesArea.setText(notes);
-    }
+        notesStage = new Stage();
+        notesStage.initModality(Modality.APPLICATION_MODAL);
+        notesStage.setTitle("Notes");
+        notesStage.setScene(new Scene(root, 450, 375));
+        notesStage.setResizable(false);
+        notesStage.showAndWait();
 
-    @FXML
-    private void saveNotes() {
-        notes = notesArea.getText();
-        stage.close();
+        notes = notesController.getNotes();
     }
 
     @FXML
@@ -175,10 +164,6 @@ public class Controller implements Initializable {
             notesColumn.setStyle("-fx-alignment: CENTER;");
 
             bookTable.setItems(getBook());
-        }
-
-        if (notesArea != null) {
-            notesArea.setText(notes);
         }
 
         if (Book.getNoteIndex() > 0) {
