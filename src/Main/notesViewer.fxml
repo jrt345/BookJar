@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="376.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/16"
@@ -22,19 +25,18 @@
                 </AnchorPane>
             </top>
             <bottom>
-                <ToolBar prefHeight="30.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+                <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="450.0"
+                         BorderPane.alignment="CENTER">
                     <items>
-                        <Button mnemonicParsing="false" onAction="#saveNotesView" prefWidth="50.0" text="Save"/>
-                        <Button mnemonicParsing="false" onAction="#resetNotesView" prefWidth="50.0" text="Reset"/>
-                        <Button mnemonicParsing="false" onAction="#cancelNotesView" text="Cancel"/>
+                        <Button mnemonicParsing="false" onAction="#exitNotesView" prefWidth="50.0" text="Exit"/>
                     </items>
                 </ToolBar>
             </bottom>
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <TextArea fx:id="notesAreaView" layoutX="125.0" layoutY="78.0" prefHeight="200.0"
-                                  prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="5.0"
+                        <TextArea fx:id="notesAreaView" editable="false" layoutX="125.0" layoutY="78.0"
+                                  prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="5.0"
                                   AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0"/>
                     </children>
                 </AnchorPane>
