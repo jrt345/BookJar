@@ -33,9 +33,9 @@
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <TextArea fx:id="notesArea" layoutX="125.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0"
-                                  wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
-                                  AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0"/>
+                        <TextArea fx:id="notesArea" layoutX="125.0" layoutY="78.0" wrapText="true"
+                                  AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"
+                                  AnchorPane.topAnchor="5.0"/>
                     </children>
                 </AnchorPane>
             </center>

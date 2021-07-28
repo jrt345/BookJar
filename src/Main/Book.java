@@ -90,7 +90,7 @@ public class Book {
 
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Notes");
+        stage.setTitle("Notes Viewer");
         stage.setScene(new Scene(root, 450, 375));
         stage.setResizable(false);
         stage.showAndWait();

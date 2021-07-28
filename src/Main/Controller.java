@@ -147,8 +147,15 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void editBook(ActionEvent event) {
-
+    private void editBook(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Book.class.getResource("bookEditor.fxml"));
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Book Editor");
+        stage.setScene(new Scene(root, 450, 450));
+        stage.setResizable(false);
+        stage.setOnCloseRequest(e -> Book.setNoteIndex(0));
+        stage.showAndWait();
     }
 
     @FXML
