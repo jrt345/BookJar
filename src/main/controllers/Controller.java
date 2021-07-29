@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Main;
@@ -180,9 +181,34 @@ public class Controller implements Initializable {
         bookArrayList.get(selectedIndex).getNotesButton().fire();
     }
 
+    @FXML
+    private TextField searchField;
+
+    private static ObservableList<Book> searchTable(String search) {
+        ObservableList<Book> bookList = FXCollections.observableArrayList();
+        for (int i = 0; i < bookArrayList.size(); i++) {
+            String title = bookArrayList.get(i).getTitle();
+            System.out.println("Title: " + title);
+            if (title.toLowerCase().contains(search.toLowerCase())) {
+                bookList.add(bookArrayList.get(i));
+                System.out.println("MATCH");
+            } else {
+                System.out.println("NO MATCH");
+            }
+        }
+        return bookList;
+    }
+
     public ObservableList<Book> getBook() {
+        try {
+            ReadWriteFile.loadData();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         ObservableList<Book> bookList = FXCollections.observableArrayList();
         index = ReadWriteFile.bookArrayList.size();
+        bookArrayList.clear();
 
         for (int i = 0; i < ReadWriteFile.bookArrayList.size(); i++) {
             Book book = new Book();
@@ -200,6 +226,21 @@ public class Controller implements Initializable {
         }
 
         return bookList;
+    }
+
+    @FXML
+    private void searchBooksTable(KeyEvent keyEvent) {
+        System.out.println("=======================================");
+        System.out.println("SearchField: " + searchField.getText());
+        if (!searchField.getText().equals("")) {
+            System.out.println("SIZE BEFORE: " + bookArrayList.size());
+            bookTable.setItems(null);
+            bookTable.setItems(searchTable(searchField.getText()));
+            System.out.println("SIZE AFTER: " + bookArrayList.size());
+        } else {
+            bookTable.setItems(getBook());
+        }
+
     }
 
     @Override

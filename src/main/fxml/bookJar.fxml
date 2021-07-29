@@ -39,7 +39,7 @@
                     <top>
                         <ToolBar id="searchByTitle" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <items>
-                                <TextField id="searchField"/>
+                                <TextField fx:id="searchField" onKeyTyped="#searchBooksTable"/>
                                 <RadioButton mnemonicParsing="false" selected="true" text="Search by title">
                                     <toggleGroup>
                                         <ToggleGroup fx:id="searchBy"/>
