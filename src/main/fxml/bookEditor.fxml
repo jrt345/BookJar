@@ -27,6 +27,8 @@
                         <Button mnemonicParsing="false" onAction="#saveBook" prefWidth="50.0" text="Save"/>
                         <Button mnemonicParsing="false" onAction="#reset" prefWidth="50.0" text="Reset"/>
                         <Button mnemonicParsing="false" onAction="#cancel" text="Cancel"/>
+                        <Region prefHeight="25.0" prefWidth="188.0"/>
+                        <Button mnemonicParsing="false" onAction="#resetNotes" text="Reset Notes"/>
                     </items>
                 </ToolBar>
             </bottom>
