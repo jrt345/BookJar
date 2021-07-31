@@ -51,6 +51,11 @@ public class BookEditorController {
     }
 
     @FXML
+    void resetNotes(ActionEvent event) {
+        notesArea.setText("");
+    }
+
+    @FXML
     void saveBook(ActionEvent event) {
         book.setTitle(titleField.getText());
         book.setAuthor(authorField.getText());
