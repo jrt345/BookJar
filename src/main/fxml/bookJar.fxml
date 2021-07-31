@@ -48,6 +48,8 @@
                                 </RadioButton>
                                 <RadioButton id="searchByAuthor" fx:id="authorRadioButton" mnemonicParsing="false"
                                              text="Search by author" toggleGroup="$searchBy"/>
+                                <RadioButton id="searchByAuthor" fx:id="genreRadioButton" layoutX="263.0" layoutY="17.0"
+                                             mnemonicParsing="false" text="Search by genre" toggleGroup="$searchBy"/>
                             </items>
                         </ToolBar>
                     </top>

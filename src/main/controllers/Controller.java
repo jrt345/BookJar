@@ -214,6 +214,10 @@ public class Controller implements Initializable {
     @FXML
     private RadioButton authorRadioButton;
     @FXML
+    private RadioButton genreRadioButton;
+
+
+    @FXML
     private TextField searchField;
 
     private static ObservableList<Book> searchTable(String search, boolean isTitle) {
