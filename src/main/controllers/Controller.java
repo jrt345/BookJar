@@ -70,6 +70,7 @@ public class Controller implements Initializable {
     private MenuItem deleteContext;
     @FXML
     private MenuItem viewContext;
+
     @FXML
     private TextField titleField;
     @FXML
@@ -209,6 +210,12 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    private RadioButton titleRadioButton;
+
+    @FXML
+    private RadioButton authorRadioButton;
+
+    @FXML
     private TextField searchField;
 
     private static ObservableList<Book> searchTable(String search) {
@@ -258,6 +265,16 @@ public class Controller implements Initializable {
         genreField.setDisable(true);
         notesButton.setDisable(true);
         addButton.setDisable(true);
+
+        boolean isTitle;
+
+        if (authorRadioButton.isPressed()) {
+            isTitle = false;
+        }
+
+        if (titleRadioButton.isPressed()) {
+            isTitle = true;
+        }
 
         if (!searchField.getText().equals("")) {
             bookTable.setItems(null);

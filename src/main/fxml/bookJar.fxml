@@ -40,13 +40,14 @@
                         <ToolBar id="searchByTitle" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <items>
                                 <TextField fx:id="searchField" onKeyTyped="#searchBooksTable"/>
-                                <RadioButton mnemonicParsing="false" selected="true" text="Search by title">
+                                <RadioButton fx:id="titleRadioButton" mnemonicParsing="false" selected="true"
+                                             text="Search by title">
                                     <toggleGroup>
                                         <ToggleGroup fx:id="searchBy"/>
                                     </toggleGroup>
                                 </RadioButton>
-                                <RadioButton id="searchByAuthor" mnemonicParsing="false" text="Search by author"
-                                             toggleGroup="$searchBy"/>
+                                <RadioButton id="searchByAuthor" fx:id="authorRadioButton" mnemonicParsing="false"
+                                             text="Search by author" toggleGroup="$searchBy"/>
                             </items>
                         </ToolBar>
                     </top>
