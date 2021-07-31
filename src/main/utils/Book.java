@@ -98,11 +98,7 @@ public class Book {
 
         setNotes(notesViewerController.getNotes());
 
-        try {
-            ReadWriteFile.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ReadWriteFile.saveData();
     }
 
     public void setNotes(String notes) {
