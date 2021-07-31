@@ -77,17 +77,13 @@ public class Controller implements Initializable {
     private TextField genreField;
 
     @FXML
-    private void quitProgram(ActionEvent event) {
+    private void quitProgram(ActionEvent event) throws IOException {
         Main.stage.close();
-        try {
-            ReadWriteFile.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ReadWriteFile.saveData();
     }
 
     @FXML
-    private void addBook(ActionEvent event) {
+    private void addBook(ActionEvent event) throws IOException {
         index++;
         bookArrayList.add(new Book());
         bookArrayList.get(index - 1).setIndex(index);
@@ -106,11 +102,7 @@ public class Controller implements Initializable {
 
         bookTable.getItems().add(bookArrayList.get(index - 1));
 
-        try {
-            ReadWriteFile.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ReadWriteFile.saveData();
 
         if (editContext.isDisable()) {
             editContext.setDisable(false);
@@ -120,7 +112,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void deleteBook(ActionEvent event) {
+    private void deleteBook(ActionEvent event) throws IOException {
         int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
 
         index--;
@@ -131,11 +123,7 @@ public class Controller implements Initializable {
             bookArrayList.get(i).setIndex(bookArrayList.get(i).getIndex() - 1);
         }
 
-        try {
-            ReadWriteFile.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ReadWriteFile.saveData();
 
         if (bookArrayList.size() == 0) {
             editContext.setDisable(true);
@@ -166,11 +154,7 @@ public class Controller implements Initializable {
         bookArrayList.set(selectedIndex, bookEditorController.getBook());
         bookTable.getItems().set(selectedIndex, bookEditorController.getBook());
 
-        try {
-            ReadWriteFile.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ReadWriteFile.saveData();
     }
 
     @FXML
