@@ -99,8 +99,10 @@
                                 <TextField fx:id="titleField" promptText="Title" HBox.hgrow="SOMETIMES"/>
                                 <TextField fx:id="authorField" promptText="Author" HBox.hgrow="SOMETIMES"/>
                                 <TextField fx:id="genreField" promptText="Genre" HBox.hgrow="SOMETIMES"/>
-                                <Button mnemonicParsing="false" onAction="#openNotes" prefWidth="75.0" text="Notes"/>
-                                <Button mnemonicParsing="false" onAction="#addBook" prefWidth="75.0" text="Add book"/>
+                                <Button fx:id="notesButton" mnemonicParsing="false" onAction="#openNotes"
+                                        prefWidth="75.0" text="Notes"/>
+                                <Button fx:id="addButton" mnemonicParsing="false" onAction="#addBook" prefWidth="75.0"
+                                        text="Add book"/>
                             </children>
                             <padding>
                                 <Insets left="5.0" right="5.0" top="7.5"/>
