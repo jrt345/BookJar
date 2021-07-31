@@ -66,12 +66,12 @@
                             <contextMenu>
                                 <ContextMenu>
                                     <items>
+                                        <MenuItem fx:id="viewContext" mnemonicParsing="false" onAction="#viewNotes"
+                                                  text="View Notes"/>
                                         <MenuItem fx:id="editContext" mnemonicParsing="false" onAction="#editBook"
                                                   text="Edit"/>
                                         <MenuItem fx:id="deleteContext" mnemonicParsing="false" onAction="#deleteBook"
                                                   text="Delete"/>
-                                        <MenuItem fx:id="viewContext" mnemonicParsing="false" onAction="#viewNotes"
-                                                  text="View Notes"/>
                                     </items>
                                 </ContextMenu>
                             </contextMenu>
