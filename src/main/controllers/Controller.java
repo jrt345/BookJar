@@ -216,14 +216,25 @@ public class Controller implements Initializable {
     @FXML
     private RadioButton genreRadioButton;
 
+    private static final int TITLE = 0;
+    private static final int AUTHOR = 1;
+    private static final int GENRE = 2;
 
     @FXML
     private TextField searchField;
 
-    private static ObservableList<Book> searchTable(String search, boolean isTitle) {
+    private static ObservableList<Book> searchTable(String search, int searchBy) {
         ObservableList<Book> bookList = FXCollections.observableArrayList();
 
-        if (!isTitle) {
+        if (searchBy == GENRE) {
+            for (int i = 0; i < bookArrayList.size(); i++) {
+                String identifier = bookArrayList.get(i).getGenre();
+
+                if (identifier.toLowerCase().contains(search.toLowerCase())) {
+                    bookList.add(bookArrayList.get(i));
+                }
+            }
+        } else if (searchBy == AUTHOR) {
             for (int i = 0; i < bookArrayList.size(); i++) {
                 String identifier = bookArrayList.get(i).getAuthor();
 
@@ -281,14 +292,16 @@ public class Controller implements Initializable {
         notesButton.setDisable(true);
         addButton.setDisable(true);
 
-        boolean isTitle;
+        int isTitle;
 
-        if (authorRadioButton.isSelected()) {
-            isTitle = false;
+        if (genreRadioButton.isSelected()) {
+            isTitle = GENRE;
+        } else if (authorRadioButton.isSelected()) {
+            isTitle = AUTHOR;
         } else if (titleRadioButton.isSelected()) {
-            isTitle = true;
+            isTitle = TITLE;
         } else {
-            isTitle = true;
+            isTitle = TITLE;
         }
 
         if (!searchField.getText().equals("")) {
