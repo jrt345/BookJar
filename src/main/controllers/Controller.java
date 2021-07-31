@@ -211,21 +211,32 @@ public class Controller implements Initializable {
 
     @FXML
     private RadioButton titleRadioButton;
-
     @FXML
     private RadioButton authorRadioButton;
-
     @FXML
     private TextField searchField;
 
-    private static ObservableList<Book> searchTable(String search) {
+    private static ObservableList<Book> searchTable(String search, boolean isTitle) {
         ObservableList<Book> bookList = FXCollections.observableArrayList();
-        for (int i = 0; i < bookArrayList.size(); i++) {
-            String title = bookArrayList.get(i).getTitle();
-            if (title.toLowerCase().contains(search.toLowerCase())) {
-                bookList.add(bookArrayList.get(i));
+
+        if (!isTitle) {
+            for (int i = 0; i < bookArrayList.size(); i++) {
+                String identifier = bookArrayList.get(i).getAuthor();
+
+                if (identifier.toLowerCase().contains(search.toLowerCase())) {
+                    bookList.add(bookArrayList.get(i));
+                }
+            }
+        } else {
+            for (int i = 0; i < bookArrayList.size(); i++) {
+                String identifier = bookArrayList.get(i).getTitle();
+
+                if (identifier.toLowerCase().contains(search.toLowerCase())) {
+                    bookList.add(bookArrayList.get(i));
+                }
             }
         }
+
         return bookList;
     }
 
@@ -268,17 +279,17 @@ public class Controller implements Initializable {
 
         boolean isTitle;
 
-        if (authorRadioButton.isPressed()) {
+        if (authorRadioButton.isSelected()) {
             isTitle = false;
-        }
-
-        if (titleRadioButton.isPressed()) {
+        } else if (titleRadioButton.isSelected()) {
+            isTitle = true;
+        } else {
             isTitle = true;
         }
 
         if (!searchField.getText().equals("")) {
             bookTable.setItems(null);
-            bookTable.setItems(searchTable(searchField.getText()));
+            bookTable.setItems(searchTable(searchField.getText(), isTitle));
         } else {
             titleField.setDisable(false);
             authorField.setDisable(false);
