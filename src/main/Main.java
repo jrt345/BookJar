@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import main.utils.readwrite.ReadWriteFile;
 
@@ -30,6 +31,7 @@ public class Main extends Application {
         stage = new Stage();
         stage.setTitle("BookJar");
         stage.setScene(new Scene(root, 900, 600));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("resources/images/bookJarLogo-200x.png")));
         stage.show();
 
         stage.setOnCloseRequest(e -> {

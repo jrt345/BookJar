@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -83,6 +84,7 @@ public class Controller implements Initializable {
         notesStage = new Stage();
         notesStage.setTitle("Notes");
         notesStage.initModality(Modality.APPLICATION_MODAL);
+        notesStage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
         notesStage.setScene(new Scene(root, 450, 375));
         notesStage.setResizable(false);
 
@@ -132,6 +134,7 @@ public class Controller implements Initializable {
 
         aboutBoxStage.setTitle("About BookJar");
         aboutBoxStage.initModality(Modality.APPLICATION_MODAL);
+        aboutBoxStage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
         aboutBoxStage.setScene(new Scene(root, 500, 400));
         aboutBoxStage.setResizable(false);
 
@@ -259,6 +262,7 @@ public class Controller implements Initializable {
         editBookStage = new Stage();
         editBookStage.setTitle("Book Editor");
         editBookStage.initModality(Modality.APPLICATION_MODAL);
+        editBookStage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
         editBookStage.setScene(new Scene(root, 450, 450));
         editBookStage.setResizable(false);
 

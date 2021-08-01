@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Main;
@@ -90,8 +91,9 @@ public class Book {
         notesViewerController.loadNotes();
 
         stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Notes Viewer");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
         stage.setScene(new Scene(root, 450, 375));
         stage.setResizable(false);
         stage.showAndWait();
