@@ -122,6 +122,25 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    public void about(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/aboutBox.fxml"));
+        Parent root = fxmlLoader.load();
+
+        AboutBoxController aboutBoxController = fxmlLoader.getController();
+
+        Stage aboutBoxStage = new Stage();
+
+        aboutBoxStage.setTitle("About BookJar");
+        aboutBoxStage.initModality(Modality.APPLICATION_MODAL);
+        aboutBoxStage.setScene(new Scene(root, 500, 400));
+        aboutBoxStage.setResizable(false);
+
+        aboutBoxController.setStage(aboutBoxStage);
+
+        aboutBoxStage.showAndWait();
+    }
+
+    @FXML
     private void addBook(ActionEvent event) throws IOException {
         index++;
         bookArrayList.add(new Book());
