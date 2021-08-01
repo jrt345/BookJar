@@ -204,11 +204,38 @@ public class Controller implements Initializable {
     private static final int AUTHOR = 1;
     private static final int GENRE = 2;
 
+    private void swapBookTableSearch(int searchBy) {
+        if (!searchField.getText().equals("")) {
+            bookTable.setItems(null);
+            bookTable.setItems(searchTable(searchField.getText(), searchBy));
+
+            if (bookTable.getItems().size() == 0) {
+                editContext.setDisable(true);
+                deleteContext.setDisable(true);
+                viewContext.setDisable(true);
+            } else {
+                editContext.setDisable(false);
+                deleteContext.setDisable(false);
+                viewContext.setDisable(false);
+            }
+        }
+    }
+
     @FXML
     private void searchByTitle(ActionEvent event) {
         if (!searchField.getText().equals("")) {
             bookTable.setItems(null);
             bookTable.setItems(searchTable(searchField.getText(), TITLE));
+
+            if (bookTable.getItems().size() == 0) {
+                editContext.setDisable(true);
+                deleteContext.setDisable(true);
+                viewContext.setDisable(true);
+            } else {
+                editContext.setDisable(false);
+                deleteContext.setDisable(false);
+                viewContext.setDisable(false);
+            }
         }
     }
 
@@ -217,6 +244,16 @@ public class Controller implements Initializable {
         if (!searchField.getText().equals("")) {
             bookTable.setItems(null);
             bookTable.setItems(searchTable(searchField.getText(), AUTHOR));
+
+            if (bookTable.getItems().size() == 0) {
+                editContext.setDisable(true);
+                deleteContext.setDisable(true);
+                viewContext.setDisable(true);
+            } else {
+                editContext.setDisable(false);
+                deleteContext.setDisable(false);
+                viewContext.setDisable(false);
+            }
         }
     }
 
@@ -225,6 +262,16 @@ public class Controller implements Initializable {
         if (!searchField.getText().equals("")) {
             bookTable.setItems(null);
             bookTable.setItems(searchTable(searchField.getText(), GENRE));
+
+            if (bookTable.getItems().size() == 0) {
+                editContext.setDisable(true);
+                deleteContext.setDisable(true);
+                viewContext.setDisable(true);
+            } else {
+                editContext.setDisable(false);
+                deleteContext.setDisable(false);
+                viewContext.setDisable(false);
+            }
         }
     }
 
