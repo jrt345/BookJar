@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -102,12 +103,17 @@ public class Controller implements Initializable {
     private MenuItem deleteContext;
     @FXML
     private MenuItem viewContext;
+
     @FXML
     private TextField titleField;
     @FXML
     private TextField authorField;
     @FXML
     private TextField genreField;
+    @FXML
+    private Button notesButton;
+    @FXML
+    private Button addButton;
 
     @FXML
     private void quitProgram(ActionEvent event) throws IOException {
@@ -146,13 +152,21 @@ public class Controller implements Initializable {
 
     @FXML
     private void deleteBook(ActionEvent event) throws IOException {
+        int index;
         int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
 
-        index--;
-        bookArrayList.remove(selectedIndex);
+        if (addButton.isDisabled()) {
+            System.out.println("PRO");
+            index = bookTable.getItems().get(selectedIndex).getIndex() - 1;
+        } else {
+            index = selectedIndex;
+        }
+
+        Controller.index--;
+        bookArrayList.remove(index);
         bookTable.getItems().remove(selectedIndex);
 
-        for (int i = selectedIndex; i < bookArrayList.size(); i++) {
+        for (int i = index; i < bookArrayList.size(); i++) {
             bookArrayList.get(i).setIndex(bookArrayList.get(i).getIndex() - 1);
         }
 
@@ -207,13 +221,20 @@ public class Controller implements Initializable {
 
     @FXML
     private void editBook(ActionEvent event) throws IOException {
+        int index;
         int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
+
+        if (addButton.isDisabled()) {
+            index = bookTable.getItems().get(selectedIndex).getIndex() - 1;
+        } else {
+            index = selectedIndex;
+        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/bookEditor.fxml"));
         Parent root = fxmlLoader.load();
 
         BookEditorController bookEditorController = fxmlLoader.getController();
-        bookEditorController.setBook(bookArrayList.get(selectedIndex));
+        bookEditorController.setBook(bookArrayList.get(index));
         bookEditorController.setTextFields();
 
         editBookStage = new Stage();
@@ -230,7 +251,7 @@ public class Controller implements Initializable {
 
         editBookStage.showAndWait();
 
-        bookArrayList.set(selectedIndex, bookEditorController.getBook());
+        bookArrayList.set(index, bookEditorController.getBook());
         bookTable.getItems().set(selectedIndex, bookEditorController.getBook());
 
         ReadWriteFile.saveData();
@@ -239,13 +260,109 @@ public class Controller implements Initializable {
     @FXML
     public void viewNotes(ActionEvent actionEvent) {
         int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
+        int index;
 
-        bookArrayList.get(selectedIndex).getNotesButton().fire();
+        if (addButton.isDisabled()) {
+            index = bookTable.getItems().get(selectedIndex).getIndex() - 1;
+        } else {
+            index = selectedIndex;
+        }
+
+        bookArrayList.get(index).getNotesButton().fire();
+    }
+
+    @FXML
+    private RadioButton titleRadioButton;
+    @FXML
+    private RadioButton authorRadioButton;
+    @FXML
+    private RadioButton genreRadioButton;
+
+    private static final int TITLE = 0;
+    private static final int AUTHOR = 1;
+    private static final int GENRE = 2;
+
+    private void swapBookTableSearch(int searchBy) {
+        bookTable.setItems(null);
+        bookTable.setItems(searchTable(searchField.getText(), searchBy));
+
+        if (bookTable.getItems().size() == 0) {
+            editContext.setDisable(true);
+            deleteContext.setDisable(true);
+            viewContext.setDisable(true);
+        } else {
+            editContext.setDisable(false);
+            deleteContext.setDisable(false);
+            viewContext.setDisable(false);
+        }
+    }
+
+    @FXML
+    private void searchByTitle(ActionEvent event) {
+        if (!searchField.getText().equals("")) {
+            swapBookTableSearch(TITLE);
+        }
+    }
+
+    @FXML
+    private void searchByAuthor(ActionEvent event) {
+        if (!searchField.getText().equals("")) {
+            swapBookTableSearch(AUTHOR);
+        }
+    }
+
+    @FXML
+    private void searchByGenre(ActionEvent event) {
+        if (!searchField.getText().equals("")) {
+            swapBookTableSearch(GENRE);
+        }
+    }
+
+    @FXML
+    private TextField searchField;
+
+    private static ObservableList<Book> searchTable(String search, int searchBy) {
+        ObservableList<Book> bookList = FXCollections.observableArrayList();
+
+        if (searchBy == GENRE) {
+            for (int i = 0; i < bookArrayList.size(); i++) {
+                String identifier = bookArrayList.get(i).getGenre();
+
+                if (identifier.toLowerCase().contains(search.toLowerCase())) {
+                    bookList.add(bookArrayList.get(i));
+                }
+            }
+        } else if (searchBy == AUTHOR) {
+            for (int i = 0; i < bookArrayList.size(); i++) {
+                String identifier = bookArrayList.get(i).getAuthor();
+
+                if (identifier.toLowerCase().contains(search.toLowerCase())) {
+                    bookList.add(bookArrayList.get(i));
+                }
+            }
+        } else {
+            for (int i = 0; i < bookArrayList.size(); i++) {
+                String identifier = bookArrayList.get(i).getTitle();
+
+                if (identifier.toLowerCase().contains(search.toLowerCase())) {
+                    bookList.add(bookArrayList.get(i));
+                }
+            }
+        }
+
+        return bookList;
     }
 
     public ObservableList<Book> getBook() {
+        try {
+            ReadWriteFile.loadData();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         ObservableList<Book> bookList = FXCollections.observableArrayList();
         index = ReadWriteFile.bookArrayList.size();
+        bookArrayList.clear();
 
         for (int i = 0; i < ReadWriteFile.bookArrayList.size(); i++) {
             Book book = new Book();
@@ -263,6 +380,40 @@ public class Controller implements Initializable {
         }
 
         return bookList;
+    }
+
+    @FXML
+    private void searchBooksTable(KeyEvent keyEvent) {
+        titleField.setDisable(true);
+        authorField.setDisable(true);
+        genreField.setDisable(true);
+        notesButton.setDisable(true);
+        addButton.setDisable(true);
+
+        int isTitle;
+
+        if (genreRadioButton.isSelected()) {
+            isTitle = GENRE;
+        } else if (authorRadioButton.isSelected()) {
+            isTitle = AUTHOR;
+        } else if (titleRadioButton.isSelected()) {
+            isTitle = TITLE;
+        } else {
+            isTitle = TITLE;
+        }
+
+        if (!searchField.getText().equals("")) {
+            swapBookTableSearch(isTitle);
+        } else {
+            titleField.setDisable(false);
+            authorField.setDisable(false);
+            genreField.setDisable(false);
+            notesButton.setDisable(false);
+            addButton.setDisable(false);
+
+            bookTable.setItems(getBook());
+        }
+
     }
 
     @Override

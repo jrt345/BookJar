@@ -32,13 +32,18 @@
                     <top>
                         <ToolBar id="searchByTitle" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <items>
-                                <TextField id="searchField"/>
-                                <RadioButton mnemonicParsing="false" selected="true" text="Search by title">
+                                <TextField fx:id="searchField" onKeyTyped="#searchBooksTable"/>
+                                <RadioButton fx:id="titleRadioButton" mnemonicParsing="false" onAction="#searchByTitle"
+                                             selected="true" text="Search by title">
                                     <toggleGroup>
                                         <ToggleGroup fx:id="searchBy"/>
                                     </toggleGroup>
                                 </RadioButton>
-                                <RadioButton id="searchByAuthor" mnemonicParsing="false" text="Search by author"
+                                <RadioButton id="searchByAuthor" fx:id="authorRadioButton" mnemonicParsing="false"
+                                             onAction="#searchByAuthor" text="Search by author"
+                                             toggleGroup="$searchBy"/>
+                                <RadioButton id="searchByAuthor" fx:id="genreRadioButton" layoutX="263.0" layoutY="17.0"
+                                             mnemonicParsing="false" onAction="#searchByGenre" text="Search by genre"
                                              toggleGroup="$searchBy"/>
                             </items>
                         </ToolBar>
@@ -92,8 +97,10 @@
                                 <TextField fx:id="titleField" promptText="Title" HBox.hgrow="SOMETIMES"/>
                                 <TextField fx:id="authorField" promptText="Author" HBox.hgrow="SOMETIMES"/>
                                 <TextField fx:id="genreField" promptText="Genre" HBox.hgrow="SOMETIMES"/>
-                                <Button mnemonicParsing="false" onAction="#openNotes" prefWidth="75.0" text="Notes"/>
-                                <Button mnemonicParsing="false" onAction="#addBook" prefWidth="75.0" text="Add book"/>
+                                <Button fx:id="notesButton" mnemonicParsing="false" onAction="#openNotes"
+                                        prefWidth="75.0" text="Notes"/>
+                                <Button fx:id="addButton" mnemonicParsing="false" onAction="#addBook" prefWidth="75.0"
+                                        text="Add book"/>
                             </children>
                             <padding>
                                 <Insets left="5.0" right="5.0" top="7.5"/>
