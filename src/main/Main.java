@@ -26,7 +26,7 @@ public class Main extends Application {
             FileOutputStream fileOut = new FileOutputStream("userbooks.dat");
             fileOut.close();
         }
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/bookJar.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/bookJar.fxml"));
         stage = new Stage();
         stage.setTitle("BookJar");
         stage.setScene(new Scene(root, 900, 600));

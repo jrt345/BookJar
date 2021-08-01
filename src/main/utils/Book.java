@@ -82,7 +82,7 @@ public class Book {
     }
 
     private void openNoteViewer() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/notesViewer.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/notesViewer.fxml"));
         Parent root = fxmlLoader.load();
 
         NotesViewerController notesViewerController = fxmlLoader.getController();

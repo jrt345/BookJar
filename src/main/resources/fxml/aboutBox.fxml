@@ -25,7 +25,7 @@
                              preserveRatio="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="80.0"
                              AnchorPane.rightAnchor="360.0" AnchorPane.topAnchor="8.0">
                      <image>
-                        <Image url="@bookJarTest2-200x.png"/>
+                        <Image url="@../images/bookJarTest2-200x.png"/>
                      </image>
                   </ImageView>
                </children>

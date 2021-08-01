@@ -73,7 +73,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void openNotes(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/notes.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/notes.fxml"));
         Parent root = fxmlLoader.load();
 
         NotesController notesController = fxmlLoader.getController();
@@ -123,7 +123,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void about(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/aboutBox.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/aboutBox.fxml"));
         Parent root = fxmlLoader.load();
 
         AboutBoxController aboutBoxController = fxmlLoader.getController();
@@ -249,7 +249,7 @@ public class Controller implements Initializable {
             index = selectedIndex;
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/bookEditor.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/bookEditor.fxml"));
         Parent root = fxmlLoader.load();
 
         BookEditorController bookEditorController = fxmlLoader.getController();
