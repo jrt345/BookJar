@@ -205,6 +205,30 @@ public class Controller implements Initializable {
     private static final int GENRE = 2;
 
     @FXML
+    private void searchByTitle(ActionEvent event) {
+        if (!searchField.getText().equals("")) {
+            bookTable.setItems(null);
+            bookTable.setItems(searchTable(searchField.getText(), TITLE));
+        }
+    }
+
+    @FXML
+    private void searchByAuthor(ActionEvent event) {
+        if (!searchField.getText().equals("")) {
+            bookTable.setItems(null);
+            bookTable.setItems(searchTable(searchField.getText(), AUTHOR));
+        }
+    }
+
+    @FXML
+    private void searchByGenre(ActionEvent event) {
+        if (!searchField.getText().equals("")) {
+            bookTable.setItems(null);
+            bookTable.setItems(searchTable(searchField.getText(), GENRE));
+        }
+    }
+
+    @FXML
     private TextField searchField;
 
     private static ObservableList<Book> searchTable(String search, int searchBy) {
