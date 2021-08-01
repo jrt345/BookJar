@@ -205,73 +205,38 @@ public class Controller implements Initializable {
     private static final int GENRE = 2;
 
     private void swapBookTableSearch(int searchBy) {
-        if (!searchField.getText().equals("")) {
-            bookTable.setItems(null);
-            bookTable.setItems(searchTable(searchField.getText(), searchBy));
+        bookTable.setItems(null);
+        bookTable.setItems(searchTable(searchField.getText(), searchBy));
 
-            if (bookTable.getItems().size() == 0) {
-                editContext.setDisable(true);
-                deleteContext.setDisable(true);
-                viewContext.setDisable(true);
-            } else {
-                editContext.setDisable(false);
-                deleteContext.setDisable(false);
-                viewContext.setDisable(false);
-            }
+        if (bookTable.getItems().size() == 0) {
+            editContext.setDisable(true);
+            deleteContext.setDisable(true);
+            viewContext.setDisable(true);
+        } else {
+            editContext.setDisable(false);
+            deleteContext.setDisable(false);
+            viewContext.setDisable(false);
         }
     }
 
     @FXML
     private void searchByTitle(ActionEvent event) {
         if (!searchField.getText().equals("")) {
-            bookTable.setItems(null);
-            bookTable.setItems(searchTable(searchField.getText(), TITLE));
-
-            if (bookTable.getItems().size() == 0) {
-                editContext.setDisable(true);
-                deleteContext.setDisable(true);
-                viewContext.setDisable(true);
-            } else {
-                editContext.setDisable(false);
-                deleteContext.setDisable(false);
-                viewContext.setDisable(false);
-            }
+            swapBookTableSearch(TITLE);
         }
     }
 
     @FXML
     private void searchByAuthor(ActionEvent event) {
         if (!searchField.getText().equals("")) {
-            bookTable.setItems(null);
-            bookTable.setItems(searchTable(searchField.getText(), AUTHOR));
-
-            if (bookTable.getItems().size() == 0) {
-                editContext.setDisable(true);
-                deleteContext.setDisable(true);
-                viewContext.setDisable(true);
-            } else {
-                editContext.setDisable(false);
-                deleteContext.setDisable(false);
-                viewContext.setDisable(false);
-            }
+            swapBookTableSearch(AUTHOR);
         }
     }
 
     @FXML
     private void searchByGenre(ActionEvent event) {
         if (!searchField.getText().equals("")) {
-            bookTable.setItems(null);
-            bookTable.setItems(searchTable(searchField.getText(), GENRE));
-
-            if (bookTable.getItems().size() == 0) {
-                editContext.setDisable(true);
-                deleteContext.setDisable(true);
-                viewContext.setDisable(true);
-            } else {
-                editContext.setDisable(false);
-                deleteContext.setDisable(false);
-                viewContext.setDisable(false);
-            }
+            swapBookTableSearch(GENRE);
         }
     }
 
@@ -360,18 +325,7 @@ public class Controller implements Initializable {
         }
 
         if (!searchField.getText().equals("")) {
-            bookTable.setItems(null);
-            bookTable.setItems(searchTable(searchField.getText(), isTitle));
-
-            if (bookTable.getItems().size() == 0) {
-                editContext.setDisable(true);
-                deleteContext.setDisable(true);
-                viewContext.setDisable(true);
-            } else {
-                editContext.setDisable(false);
-                deleteContext.setDisable(false);
-                viewContext.setDisable(false);
-            }
+            swapBookTableSearch(isTitle);
         } else {
             titleField.setDisable(false);
             authorField.setDisable(false);
