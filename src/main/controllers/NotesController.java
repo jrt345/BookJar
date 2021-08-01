@@ -12,9 +12,6 @@ public class NotesController {
     @FXML
     private TextArea notesArea;
 
-    @FXML
-    private Button saveNotesButton;
-
     public String getNotes() {
         return notes;
     }
@@ -47,6 +44,9 @@ public class NotesController {
     public String getNotesAreaString() {
         return notesArea.getText();
     }
+
+    @FXML
+    private Button saveNotesButton;
 
     public void pushSaveButton() {
         saveNotesButton.fire();

@@ -47,7 +47,7 @@ public class Controller implements Initializable {
 
     public static final ArrayList<Book> bookArrayList = new ArrayList<>();
 
-    private void alertBox(NotesController notesController, WindowEvent windowEvent) {
+    private void notesAlertBox(NotesController controller, WindowEvent windowEvent) {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Would you like to save your notes before exiting??");
         alert.setHeaderText("Exit notes editor");
 
@@ -59,9 +59,10 @@ public class Controller implements Initializable {
         alert.getButtonTypes().add(2, ButtonType.CANCEL);
 
         Optional<ButtonType> result = alert.showAndWait();
+
         if (result.isPresent() && result.get().equals(saveButton)) {
-            notesController.pushSaveButton();
-            notes = notesController.getNotes();
+            controller.pushSaveButton();
+            notes = controller.getNotes();
         } else if (result.isPresent() && result.get().equals(doNotSaveButton)) {
             notesStage.close();
         } else {
@@ -86,11 +87,13 @@ public class Controller implements Initializable {
 
         notesStage.setOnCloseRequest(e -> {
             if (!notes.equals(notesController.getNotesAreaString())) {
-                alertBox(notesController, e);
+                notesAlertBox(notesController, e);
             }
         });
 
         notesStage.showAndWait();
+
+        notes = notesController.getNotes();
     }
 
     @FXML
@@ -164,6 +167,44 @@ public class Controller implements Initializable {
 
     public static Stage editBookStage;
 
+    private void editBooksAlertBox(BookEditorController notesController, WindowEvent windowEvent) {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Would you like to save your book information before exiting??");
+        alert.setHeaderText("Exit book editor");
+
+        ButtonType saveButton = new ButtonType("Save");
+        ButtonType doNotSaveButton = new ButtonType("Don't Save");
+
+        alert.getButtonTypes().set(0, saveButton);
+        alert.getButtonTypes().set(1, doNotSaveButton);
+        alert.getButtonTypes().add(2, ButtonType.CANCEL);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get().equals(saveButton)) {
+            notesController.pushSaveButton();
+        } else if (result.isPresent() && result.get().equals(doNotSaveButton)) {
+            editBookStage.close();
+        } else {
+            windowEvent.consume();
+        }
+    }
+
+    private boolean hasChanged(BookEditorController controller) {
+        boolean hasChanged = false;
+
+        if (!controller.getBook().getTitle().equals(controller.getTitleField())) {
+            hasChanged = true;
+        } else if (!controller.getBook().getAuthor().equals(controller.getAuthorField())) {
+            hasChanged = true;
+        } else if (!controller.getBook().getGenre().equals(controller.getGenreField())) {
+            hasChanged = true;
+        } else if (!controller.getBook().getNotes().equals(controller.getNotesArea())) {
+            hasChanged = true;
+        }
+
+        return hasChanged;
+    }
+
     @FXML
     private void editBook(ActionEvent event) throws IOException {
         int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
@@ -180,6 +221,13 @@ public class Controller implements Initializable {
         editBookStage.initModality(Modality.APPLICATION_MODAL);
         editBookStage.setScene(new Scene(root, 450, 450));
         editBookStage.setResizable(false);
+
+        editBookStage.setOnCloseRequest(e -> {
+            if (hasChanged(bookEditorController)) {
+                editBooksAlertBox(bookEditorController, e);
+            }
+        });
+
         editBookStage.showAndWait();
 
         bookArrayList.set(selectedIndex, bookEditorController.getBook());

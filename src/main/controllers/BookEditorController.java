@@ -2,6 +2,7 @@ package main.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import main.utils.Book;
@@ -20,11 +21,27 @@ public class BookEditorController {
     @FXML
     private TextArea notesArea;
 
+    @FXML
+    public Button saveBookButton;
+
+    public String getTitleField() {
+        return titleField.getText();
+    }
+
+    public String getAuthorField() {
+        return authorField.getText();
+    }
+
+    public String getGenreField() {
+        return genreField.getText();
+    }
+
     private Book book;
 
     public Book getBook() {
         return book;
     }
+
     public void setBook(Book book) {
         this.book = book;
     }
@@ -62,5 +79,13 @@ public class BookEditorController {
         book.setGenre(genreField.getText());
         book.setNotes(notesArea.getText());
         Controller.editBookStage.close();
+    }
+
+    public String getNotesArea() {
+        return notesArea.getText();
+    }
+
+    public void pushSaveButton() {
+        saveBookButton.fire();
     }
 }
