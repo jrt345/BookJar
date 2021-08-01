@@ -15,15 +15,8 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="File">
                             <items>
-                                <MenuItem id="menuSaveButton" mnemonicParsing="false" text="Save"/>
-                                <MenuItem id="menuSettingsButton" mnemonicParsing="false" text="Settings"/>
                                 <MenuItem id="menuQuitButton" mnemonicParsing="false" onAction="#quitProgram"
                                           text="Quit"/>
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Edit">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Delete"/>
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Help">
