@@ -315,6 +315,16 @@ public class Controller implements Initializable {
         if (!searchField.getText().equals("")) {
             bookTable.setItems(null);
             bookTable.setItems(searchTable(searchField.getText(), isTitle));
+
+            if (bookTable.getItems().size() == 0) {
+                editContext.setDisable(true);
+                deleteContext.setDisable(true);
+                viewContext.setDisable(true);
+            } else {
+                editContext.setDisable(false);
+                deleteContext.setDisable(false);
+                viewContext.setDisable(false);
+            }
         } else {
             titleField.setDisable(false);
             authorField.setDisable(false);
