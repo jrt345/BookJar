@@ -2,6 +2,7 @@ package main.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 public class NotesController {
@@ -10,6 +11,9 @@ public class NotesController {
 
     @FXML
     private TextArea notesArea;
+
+    @FXML
+    private Button saveNotesButton;
 
     public String getNotes() {
         return notes;
@@ -38,5 +42,13 @@ public class NotesController {
     private void saveNotes(ActionEvent event) {
         notes = notesArea.getText();
         Controller.notesStage.close();
+    }
+
+    public String getNotesAreaString() {
+        return notesArea.getText();
+    }
+
+    public void pushSaveButton() {
+        saveNotesButton.fire();
     }
 }

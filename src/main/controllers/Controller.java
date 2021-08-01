@@ -9,9 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import main.Main;
 import main.utils.Book;
 import main.utils.readwrite.ReadWriteFile;
@@ -19,6 +21,7 @@ import main.utils.readwrite.ReadWriteFile;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -44,6 +47,28 @@ public class Controller implements Initializable {
 
     public static final ArrayList<Book> bookArrayList = new ArrayList<>();
 
+    private void alertBox(NotesController notesController, WindowEvent windowEvent) {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Would you like to save your notes before exiting??");
+        alert.setHeaderText("Exit notes editor");
+
+        ButtonType saveButton = new ButtonType("Save");
+        ButtonType doNotSaveButton = new ButtonType("Don't Save");
+
+        alert.getButtonTypes().set(0, saveButton);
+        alert.getButtonTypes().set(1, doNotSaveButton);
+        alert.getButtonTypes().add(2, ButtonType.CANCEL);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get().equals(saveButton)) {
+            notesController.pushSaveButton();
+            notes = notesController.getNotes();
+        } else if (result.isPresent() && result.get().equals(doNotSaveButton)) {
+            notesStage.close();
+        } else {
+            windowEvent.consume();
+        }
+    }
+
     @FXML
     private void openNotes(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/notes.fxml"));
@@ -58,9 +83,14 @@ public class Controller implements Initializable {
         notesStage.setTitle("Notes");
         notesStage.setScene(new Scene(root, 450, 375));
         notesStage.setResizable(false);
-        notesStage.showAndWait();
 
-        notes = notesController.getNotes();
+        notesStage.setOnCloseRequest(e -> {
+            if (!notes.equals(notesController.getNotesAreaString())) {
+                alertBox(notesController, e);
+            }
+        });
+
+        notesStage.showAndWait();
     }
 
     @FXML
