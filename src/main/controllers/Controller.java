@@ -54,8 +54,8 @@ public class Controller implements Initializable {
         notesController.loadNotes();
 
         notesStage = new Stage();
-        notesStage.initModality(Modality.APPLICATION_MODAL);
         notesStage.setTitle("Notes");
+        notesStage.initModality(Modality.APPLICATION_MODAL);
         notesStage.setScene(new Scene(root, 450, 375));
         notesStage.setResizable(false);
         notesStage.showAndWait();
@@ -146,6 +146,7 @@ public class Controller implements Initializable {
         bookEditorController.setTextFields();
 
         editBookStage = new Stage();
+        editBookStage.setTitle("Book Editor");
         editBookStage.initModality(Modality.APPLICATION_MODAL);
         editBookStage.setScene(new Scene(root, 450, 450));
         editBookStage.setResizable(false);
