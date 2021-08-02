@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import main.utils.Book;
 
 public class BookEditorController {
@@ -46,6 +47,11 @@ public class BookEditorController {
         this.book = book;
     }
 
+    private static Stage stage;
+
+    public void setStage(Stage stage) {
+        BookEditorController.stage = stage;
+    }
 
     public void setTextFields() {
         titleField.setText(book.getTitle());
@@ -56,7 +62,7 @@ public class BookEditorController {
 
     @FXML
     void cancel(ActionEvent event) {
-        Controller.editBookStage.close();
+        stage.close();
     }
 
     @FXML
@@ -78,7 +84,7 @@ public class BookEditorController {
         book.setAuthor(authorField.getText());
         book.setGenre(genreField.getText());
         book.setNotes(notesArea.getText());
-        Controller.editBookStage.close();
+        stage.close();
     }
 
     public String getNotesArea() {

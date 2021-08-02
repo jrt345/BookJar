@@ -213,9 +213,7 @@ public class Controller implements Initializable {
         }
     }
 
-    public static Stage editBookStage;
-
-    private void editBooksAlertBox(BookEditorController notesController, WindowEvent windowEvent) {
+    private void editBooksAlertBox(BookEditorController notesController, Stage stage, WindowEvent windowEvent) {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Would you like to save your book information before exiting??");
         alert.setHeaderText("Exit book editor");
 
@@ -231,7 +229,7 @@ public class Controller implements Initializable {
         if (result.isPresent() && result.get().equals(saveButton)) {
             notesController.pushSaveButton();
         } else if (result.isPresent() && result.get().equals(doNotSaveButton)) {
-            editBookStage.close();
+            stage.close();
         } else {
             windowEvent.consume();
         }
@@ -271,7 +269,10 @@ public class Controller implements Initializable {
         bookEditorController.setBook(bookArrayList.get(index));
         bookEditorController.setTextFields();
 
-        editBookStage = new Stage();
+        Stage editBookStage = new Stage();
+
+        bookEditorController.setStage(editBookStage);
+
         editBookStage.setTitle("Book Editor");
         editBookStage.initModality(Modality.APPLICATION_MODAL);
         editBookStage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
@@ -280,7 +281,7 @@ public class Controller implements Initializable {
 
         editBookStage.setOnCloseRequest(e -> {
             if (hasChanged(bookEditorController)) {
-                editBooksAlertBox(bookEditorController, e);
+                editBooksAlertBox(bookEditorController, editBookStage, e);
             }
         });
 
