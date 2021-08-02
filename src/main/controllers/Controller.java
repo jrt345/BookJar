@@ -124,7 +124,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void about(ActionEvent event) throws IOException {
+    private void about(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/aboutBox.fxml"));
         Parent root = fxmlLoader.load();
 
@@ -178,21 +178,33 @@ public class Controller implements Initializable {
         int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
 
         if (addButton.isDisabled()) {
-            System.out.println("PRO");
             index = bookTable.getItems().get(selectedIndex).getIndex() - 1;
         } else {
             index = selectedIndex;
         }
 
-        Controller.index--;
-        bookArrayList.remove(index);
-        bookTable.getItems().remove(selectedIndex);
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to delete \"" +
+                bookArrayList.get(index).getTitle() + "\" ?? This process can not be undone. ");
+        alert.setHeaderText("Confirm delete");
 
-        for (int i = index; i < bookArrayList.size(); i++) {
-            bookArrayList.get(i).setIndex(bookArrayList.get(i).getIndex() - 1);
+        ButtonType deleteButton = new ButtonType("Delete");
+
+        alert.getButtonTypes().set(1, deleteButton);
+        alert.getButtonTypes().set(0, ButtonType.CANCEL);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get().equals(deleteButton)) {
+            Controller.index--;
+            bookArrayList.remove(index);
+            bookTable.getItems().remove(selectedIndex);
+
+            for (int i = index; i < bookArrayList.size(); i++) {
+                bookArrayList.get(i).setIndex(bookArrayList.get(i).getIndex() - 1);
+            }
+
+            ReadWriteFile.saveData();
         }
-
-        ReadWriteFile.saveData();
 
         if (bookArrayList.size() == 0) {
             editContext.setDisable(true);
@@ -281,7 +293,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void viewNotes(ActionEvent actionEvent) {
+    private void viewNotes(ActionEvent actionEvent) {
         int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
         int index;
 
@@ -376,7 +388,7 @@ public class Controller implements Initializable {
         return bookList;
     }
 
-    public ObservableList<Book> getBook() {
+    private ObservableList<Book> getBook() {
         try {
             ReadWriteFile.loadData();
         } catch (IOException | ClassNotFoundException e) {
