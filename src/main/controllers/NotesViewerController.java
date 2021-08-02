@@ -8,8 +8,6 @@ import main.utils.Book;
 public class NotesViewerController {
 
     String notes;
-    @FXML
-    private TextArea notesAreaView;
 
     public String getNotes() {
         return notes;
@@ -18,6 +16,9 @@ public class NotesViewerController {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+    @FXML
+    private TextArea notesAreaView;
 
     public void loadNotes() {
         notesAreaView.setText(notes);

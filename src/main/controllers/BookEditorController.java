@@ -10,15 +10,18 @@ import main.utils.Book;
 
 public class BookEditorController {
 
+    private static Stage stage;
+
+    public void setStage(Stage stage) {
+        BookEditorController.stage = stage;
+    }
+
     @FXML
     private TextField titleField;
-
     @FXML
     private TextField authorField;
-
     @FXML
     private TextField genreField;
-
     @FXML
     private TextArea notesArea;
 
@@ -37,6 +40,10 @@ public class BookEditorController {
         return genreField.getText();
     }
 
+    public String getNotesArea() {
+        return notesArea.getText();
+    }
+
     private Book book;
 
     public Book getBook() {
@@ -47,35 +54,11 @@ public class BookEditorController {
         this.book = book;
     }
 
-    private static Stage stage;
-
-    public void setStage(Stage stage) {
-        BookEditorController.stage = stage;
-    }
-
     public void setTextFields() {
         titleField.setText(book.getTitle());
         authorField.setText(book.getAuthor());
         genreField.setText(book.getGenre());
         notesArea.setText(book.getNotes());
-    }
-
-    @FXML
-    void cancel(ActionEvent event) {
-        stage.close();
-    }
-
-    @FXML
-    void reset(ActionEvent event) {
-        titleField.setText("");
-        authorField.setText("");
-        genreField.setText("");
-        notesArea.setText("");
-    }
-
-    @FXML
-    void resetNotes(ActionEvent event) {
-        notesArea.setText("");
     }
 
     @FXML
@@ -87,11 +70,25 @@ public class BookEditorController {
         stage.close();
     }
 
-    public String getNotesArea() {
-        return notesArea.getText();
-    }
-
     public void pushSaveButton() {
         saveBookButton.fire();
+    }
+
+    @FXML
+    void reset(ActionEvent event) {
+        titleField.setText("");
+        authorField.setText("");
+        genreField.setText("");
+        notesArea.setText("");
+    }
+
+    @FXML
+    void cancel(ActionEvent event) {
+        stage.close();
+    }
+
+    @FXML
+    void resetNotes(ActionEvent event) {
+        notesArea.setText("");
     }
 }

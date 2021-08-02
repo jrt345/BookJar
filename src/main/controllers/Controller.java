@@ -33,6 +33,7 @@ public class Controller implements Initializable {
 
     @FXML
     private TableView<Book> bookTable;
+
     @FXML
     private TableColumn<Book, Integer> indexColumn;
     @FXML
@@ -53,6 +54,51 @@ public class Controller implements Initializable {
     public static Book getBookArrayListBook(int index) {
         return bookArrayList.get(index);
     }
+
+    @FXML
+    private void quitProgram(ActionEvent event) throws IOException {
+        Main.closeStage();
+        ReadWriteFile.saveData();
+    }
+
+    @FXML
+    private void about(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/aboutBox.fxml"));
+        Parent root = fxmlLoader.load();
+
+        AboutBoxController aboutBoxController = fxmlLoader.getController();
+
+        Stage aboutBoxStage = new Stage();
+
+        aboutBoxStage.setTitle("About BookJar");
+        aboutBoxStage.initModality(Modality.APPLICATION_MODAL);
+        aboutBoxStage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
+        aboutBoxStage.setScene(new Scene(root, 500, 400));
+        aboutBoxStage.setResizable(false);
+
+        aboutBoxController.setStage(aboutBoxStage);
+
+        aboutBoxStage.showAndWait();
+    }
+
+    @FXML
+    private MenuItem editContext;
+    @FXML
+    private MenuItem deleteContext;
+    @FXML
+    private MenuItem viewContext;
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextField authorField;
+    @FXML
+    private TextField genreField;
+    @FXML
+    private Button notesButton;
+    @FXML
+    private Button addButton;
+    @FXML
+    private TextField searchField;
 
     private void notesAlertBox(NotesController controller, Stage stage, WindowEvent windowEvent) {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Would you like to save your notes before exiting??");
@@ -107,48 +153,10 @@ public class Controller implements Initializable {
         notes = notesController.getNotes();
     }
 
-    @FXML
-    private MenuItem editContext;
-    @FXML
-    private MenuItem deleteContext;
-    @FXML
-    private MenuItem viewContext;
-
-    @FXML
-    private TextField titleField;
-    @FXML
-    private TextField authorField;
-    @FXML
-    private TextField genreField;
-    @FXML
-    private Button notesButton;
-    @FXML
-    private Button addButton;
-
-    @FXML
-    private void quitProgram(ActionEvent event) throws IOException {
-        Main.closeStage();
-        ReadWriteFile.saveData();
-    }
-
-    @FXML
-    private void about(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/aboutBox.fxml"));
-        Parent root = fxmlLoader.load();
-
-        AboutBoxController aboutBoxController = fxmlLoader.getController();
-
-        Stage aboutBoxStage = new Stage();
-
-        aboutBoxStage.setTitle("About BookJar");
-        aboutBoxStage.initModality(Modality.APPLICATION_MODAL);
-        aboutBoxStage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
-        aboutBoxStage.setScene(new Scene(root, 500, 400));
-        aboutBoxStage.setResizable(false);
-
-        aboutBoxController.setStage(aboutBoxStage);
-
-        aboutBoxStage.showAndWait();
+    private void disableContextMenu(boolean disable) {
+        editContext.setDisable(disable);
+        deleteContext.setDisable(disable);
+        viewContext.setDisable(disable);
     }
 
     @FXML
@@ -174,16 +182,14 @@ public class Controller implements Initializable {
         ReadWriteFile.saveData();
 
         if (editContext.isDisable()) {
-            editContext.setDisable(false);
-            deleteContext.setDisable(false);
-            viewContext.setDisable(false);
+            disableContextMenu(false);
         }
     }
 
     @FXML
-    private void deleteBook(ActionEvent event) throws IOException {
-        int index;
+    private void viewNotes(ActionEvent actionEvent) {
         int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
+        int index;
 
         if (addButton.isDisabled()) {
             index = bookTable.getItems().get(selectedIndex).getIndex() - 1;
@@ -191,34 +197,7 @@ public class Controller implements Initializable {
             index = selectedIndex;
         }
 
-        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to delete \"" +
-                bookArrayList.get(index).getTitle() + "\" ?? This process can not be undone. ");
-        alert.setHeaderText("Confirm delete");
-
-        ButtonType deleteButton = new ButtonType("Delete");
-
-        alert.getButtonTypes().set(1, deleteButton);
-        alert.getButtonTypes().set(0, ButtonType.CANCEL);
-
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isPresent() && result.get().equals(deleteButton)) {
-            Controller.index--;
-            bookArrayList.remove(index);
-            bookTable.getItems().remove(selectedIndex);
-
-            for (int i = index; i < bookArrayList.size(); i++) {
-                bookArrayList.get(i).setIndex(bookArrayList.get(i).getIndex() - 1);
-            }
-
-            ReadWriteFile.saveData();
-        }
-
-        if (bookArrayList.size() == 0) {
-            editContext.setDisable(true);
-            deleteContext.setDisable(true);
-            viewContext.setDisable(true);
-        }
+        bookArrayList.get(index).getNotesButton().fire();
     }
 
     private void editBooksAlertBox(BookEditorController notesController, Stage stage, WindowEvent windowEvent) {
@@ -302,9 +281,9 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void viewNotes(ActionEvent actionEvent) {
-        int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
+    private void deleteBook(ActionEvent event) throws IOException {
         int index;
+        int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
 
         if (addButton.isDisabled()) {
             index = bookTable.getItems().get(selectedIndex).getIndex() - 1;
@@ -312,7 +291,32 @@ public class Controller implements Initializable {
             index = selectedIndex;
         }
 
-        bookArrayList.get(index).getNotesButton().fire();
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to delete \"" +
+                bookArrayList.get(index).getTitle() + "\" ?? This process can not be undone. ");
+        alert.setHeaderText("Confirm delete");
+
+        ButtonType deleteButton = new ButtonType("Delete");
+
+        alert.getButtonTypes().set(1, deleteButton);
+        alert.getButtonTypes().set(0, ButtonType.CANCEL);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get().equals(deleteButton)) {
+            Controller.index--;
+            bookArrayList.remove(index);
+            bookTable.getItems().remove(selectedIndex);
+
+            for (int i = index; i < bookArrayList.size(); i++) {
+                bookArrayList.get(i).setIndex(bookArrayList.get(i).getIndex() - 1);
+            }
+
+            ReadWriteFile.saveData();
+        }
+
+        if (bookArrayList.size() == 0) {
+            disableContextMenu(true);
+        }
     }
 
     @FXML
@@ -330,15 +334,7 @@ public class Controller implements Initializable {
         bookTable.setItems(null);
         bookTable.setItems(searchTable(searchField.getText(), searchBy));
 
-        if (bookTable.getItems().size() == 0) {
-            editContext.setDisable(true);
-            deleteContext.setDisable(true);
-            viewContext.setDisable(true);
-        } else {
-            editContext.setDisable(false);
-            deleteContext.setDisable(false);
-            viewContext.setDisable(false);
-        }
+        disableContextMenu(bookTable.getItems().size() == 0);
     }
 
     @FXML
@@ -361,9 +357,6 @@ public class Controller implements Initializable {
             swapBookTableSearch(GENRE);
         }
     }
-
-    @FXML
-    private TextField searchField;
 
     private static ObservableList<Book> searchTable(String search, int searchBy) {
         ObservableList<Book> bookList = FXCollections.observableArrayList();
@@ -426,13 +419,17 @@ public class Controller implements Initializable {
         return bookList;
     }
 
+    private void disableBookAdding(boolean disable) {
+        titleField.setDisable(disable);
+        authorField.setDisable(disable);
+        genreField.setDisable(disable);
+        notesButton.setDisable(disable);
+        addButton.setDisable(disable);
+    }
+
     @FXML
     private void searchBooksTable(KeyEvent keyEvent) {
-        titleField.setDisable(true);
-        authorField.setDisable(true);
-        genreField.setDisable(true);
-        notesButton.setDisable(true);
-        addButton.setDisable(true);
+        disableBookAdding(true);
 
         int searchBy;
 
@@ -449,11 +446,7 @@ public class Controller implements Initializable {
         if (!searchField.getText().equals("")) {
             swapBookTableSearch(searchBy);
         } else {
-            titleField.setDisable(false);
-            authorField.setDisable(false);
-            genreField.setDisable(false);
-            notesButton.setDisable(false);
-            addButton.setDisable(false);
+            disableBookAdding(false);
 
             bookTable.setItems(getBook());
         }
@@ -471,9 +464,7 @@ public class Controller implements Initializable {
         bookTable.setItems(getBook());
 
         if (bookArrayList.size() == 0) {
-            editContext.setDisable(true);
-            deleteContext.setDisable(true);
-            viewContext.setDisable(true);
+            disableContextMenu(true);
         }
     }
 }
