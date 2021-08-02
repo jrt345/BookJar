@@ -10,6 +10,7 @@ import main.utils.readwrite.ReadWriteFile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -32,12 +33,12 @@ public class Main extends Application {
             fileOut.close();
         }
 
-        Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/bookJar.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("resources/fxml/bookJar.fxml")));
 
         stage = new Stage();
         stage.setTitle("BookJar");
         stage.setScene(new Scene(root, 900, 600));
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("resources/images/bookJarLogo-200x.png")));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
         stage.show();
 
         stage.setOnCloseRequest(e -> {

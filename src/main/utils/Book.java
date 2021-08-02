@@ -14,6 +14,7 @@ import main.controllers.NotesViewerController;
 import main.utils.readwrite.ReadWriteFile;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Book {
 
@@ -93,7 +94,7 @@ public class Book {
         stage = new Stage();
         stage.setTitle("Notes Viewer");
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
+        stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
         stage.setScene(new Scene(root, 450, 375));
         stage.setResizable(false);
         stage.showAndWait();
