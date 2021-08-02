@@ -14,9 +14,6 @@ public class NotesController {
         NotesController.stage = stage;
     }
 
-    @FXML
-    private TextArea notesArea;
-
     private String notes;
 
     public String getNotes() {
@@ -28,15 +25,18 @@ public class NotesController {
     }
 
     @FXML
-    private Button saveNotesButton;
+    private TextArea notesArea;
+
+    public String getNotesAreaString() {
+        return notesArea.getText();
+    }
 
     public void loadNotes() {
         notesArea.setText(notes);
     }
 
-    public String getNotesAreaString() {
-        return notesArea.getText();
-    }
+    @FXML
+    private Button saveNotesButton;
 
     public void pushSaveButton() {
         saveNotesButton.fire();

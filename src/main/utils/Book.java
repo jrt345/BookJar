@@ -18,6 +18,33 @@ import java.util.Objects;
 
 public class Book {
 
+    private static Stage stage;
+
+    private void openNoteViewer() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/notesViewer.fxml"));
+        Parent root = fxmlLoader.load();
+
+        NotesViewerController notesViewerController = fxmlLoader.getController();
+        notesViewerController.setNotes(getNotes());
+        notesViewerController.loadNotes();
+
+        stage = new Stage();
+        stage.setTitle("Notes Viewer");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
+        stage.setScene(new Scene(root, 450, 375));
+        stage.setResizable(false);
+        stage.showAndWait();
+
+        setNotes(notesViewerController.getNotes());
+
+        ReadWriteFile.saveData();
+    }
+
+    public static void closeStage() {
+        stage.close();
+    }
+
     private SimpleIntegerProperty index;
     private SimpleStringProperty title;
     private SimpleStringProperty author;
@@ -69,43 +96,15 @@ public class Book {
     public String getNotes() {
         return notes.get();
     }
+    public void setNotes(String notes) {
+        this.notes = new SimpleStringProperty(notes);
+    }
 
     public Button getNotesButton() {
         return notesButton;
     }
     public void setNotesButton(Button notesButton) {
         this.notesButton = notesButton;
-    }
-
-    private static Stage stage;
-
-    public static void closeStage() {
-        stage.close();
-    }
-
-    private void openNoteViewer() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/notesViewer.fxml"));
-        Parent root = fxmlLoader.load();
-
-        NotesViewerController notesViewerController = fxmlLoader.getController();
-        notesViewerController.setNotes(getNotes());
-        notesViewerController.loadNotes();
-
-        stage = new Stage();
-        stage.setTitle("Notes Viewer");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
-        stage.setScene(new Scene(root, 450, 375));
-        stage.setResizable(false);
-        stage.showAndWait();
-
-        setNotes(notesViewerController.getNotes());
-
-        ReadWriteFile.saveData();
-    }
-
-    public void setNotes(String notes) {
-        this.notes = new SimpleStringProperty(notes);
     }
 
     public void initializeNotesButton() {

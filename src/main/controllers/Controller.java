@@ -200,6 +200,22 @@ public class Controller implements Initializable {
         bookArrayList.get(index).getNotesButton().fire();
     }
 
+    private boolean hasChanged(BookEditorController controller) {
+        boolean hasChanged = false;
+
+        if (!controller.getBook().getTitle().equals(controller.getTitleField())) {
+            hasChanged = true;
+        } else if (!controller.getBook().getAuthor().equals(controller.getAuthorField())) {
+            hasChanged = true;
+        } else if (!controller.getBook().getGenre().equals(controller.getGenreField())) {
+            hasChanged = true;
+        } else if (!controller.getBook().getNotes().equals(controller.getNotesArea())) {
+            hasChanged = true;
+        }
+
+        return hasChanged;
+    }
+
     private void editBooksAlertBox(BookEditorController notesController, Stage stage, WindowEvent windowEvent) {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Would you like to save your book information before exiting??");
         alert.setHeaderText("Exit book editor");
@@ -220,22 +236,6 @@ public class Controller implements Initializable {
         } else {
             windowEvent.consume();
         }
-    }
-
-    private boolean hasChanged(BookEditorController controller) {
-        boolean hasChanged = false;
-
-        if (!controller.getBook().getTitle().equals(controller.getTitleField())) {
-            hasChanged = true;
-        } else if (!controller.getBook().getAuthor().equals(controller.getAuthorField())) {
-            hasChanged = true;
-        } else if (!controller.getBook().getGenre().equals(controller.getGenreField())) {
-            hasChanged = true;
-        } else if (!controller.getBook().getNotes().equals(controller.getNotesArea())) {
-            hasChanged = true;
-        }
-
-        return hasChanged;
     }
 
     @FXML
