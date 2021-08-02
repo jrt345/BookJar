@@ -28,10 +28,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    public static Stage notesStage;
-
     private static int index = 0;
-    private static boolean initial = true;
     private static String notes = "";
 
     @FXML
@@ -49,7 +46,7 @@ public class Controller implements Initializable {
 
     public static final ArrayList<Book> bookArrayList = new ArrayList<>();
 
-    private void notesAlertBox(NotesController controller, WindowEvent windowEvent) {
+    private void notesAlertBox(NotesController controller, Stage stage, WindowEvent windowEvent) {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Would you like to save your notes before exiting??");
         alert.setHeaderText("Exit notes editor");
 
@@ -66,7 +63,7 @@ public class Controller implements Initializable {
             controller.pushSaveButton();
             notes = controller.getNotes();
         } else if (result.isPresent() && result.get().equals(doNotSaveButton)) {
-            notesStage.close();
+            stage.close();
         } else {
             windowEvent.consume();
         }
@@ -81,7 +78,10 @@ public class Controller implements Initializable {
         notesController.setNotes(notes);
         notesController.loadNotes();
 
-        notesStage = new Stage();
+        Stage notesStage = new Stage();
+
+        notesController.setStage(notesStage);
+
         notesStage.setTitle("Notes");
         notesStage.initModality(Modality.APPLICATION_MODAL);
         notesStage.getIcons().add(new Image(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
@@ -90,7 +90,7 @@ public class Controller implements Initializable {
 
         notesStage.setOnCloseRequest(e -> {
             if (!notes.equals(notesController.getNotesAreaString())) {
-                notesAlertBox(notesController, e);
+                notesAlertBox(notesController, notesStage, e);
             }
         });
 
@@ -448,27 +448,23 @@ public class Controller implements Initializable {
 
             bookTable.setItems(getBook());
         }
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (initial) {
-            initial = false;
-            indexColumn.setCellValueFactory(new PropertyValueFactory<>("Index"));
-            titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
-            authorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
-            genreColumn.setCellValueFactory(new PropertyValueFactory<>("Genre"));
-            notesColumn.setCellValueFactory(new PropertyValueFactory<>("NotesButton"));
-            notesColumn.setStyle("-fx-alignment: CENTER;");
+        indexColumn.setCellValueFactory(new PropertyValueFactory<>("Index"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<>("Genre"));
+        notesColumn.setCellValueFactory(new PropertyValueFactory<>("NotesButton"));
+        notesColumn.setStyle("-fx-alignment: CENTER;");
 
-            bookTable.setItems(getBook());
+        bookTable.setItems(getBook());
 
-            if (bookArrayList.size() == 0) {
-                editContext.setDisable(true);
-                deleteContext.setDisable(true);
-                viewContext.setDisable(true);
-            }
+        if (bookArrayList.size() == 0) {
+            editContext.setDisable(true);
+            deleteContext.setDisable(true);
+            viewContext.setDisable(true);
         }
     }
 }

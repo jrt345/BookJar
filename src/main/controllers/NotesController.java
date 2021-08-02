@@ -4,8 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 public class NotesController {
+
+    private static Stage stage;
+
+    public void setStage(Stage stage) {
+        NotesController.stage = stage;
+    }
 
     private String notes;
 
@@ -26,7 +33,7 @@ public class NotesController {
 
     @FXML
     private void cancel(ActionEvent event) {
-        Controller.notesStage.close();
+        stage.close();
     }
 
     @FXML
@@ -38,7 +45,7 @@ public class NotesController {
     @FXML
     private void saveNotes(ActionEvent event) {
         notes = notesArea.getText();
-        Controller.notesStage.close();
+        stage.close();
     }
 
     public String getNotesAreaString() {
