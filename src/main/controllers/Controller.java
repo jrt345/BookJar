@@ -398,16 +398,16 @@ public class Controller implements Initializable {
         }
 
         ObservableList<Book> bookList = FXCollections.observableArrayList();
-        index = ReadWriteFile.bookArrayList.size();
+        index = ReadWriteFile.getBookArrayListSize();
         bookArrayList.clear();
 
-        for (int i = 0; i < ReadWriteFile.bookArrayList.size(); i++) {
+        for (int i = 0; i < ReadWriteFile.getBookArrayListSize(); i++) {
             Book book = new Book();
-            book.setIndex(ReadWriteFile.bookArrayList.get(i).getIndex());
-            book.setTitle(ReadWriteFile.bookArrayList.get(i).getTitle());
-            book.setAuthor(ReadWriteFile.bookArrayList.get(i).getAuthor());
-            book.setGenre(ReadWriteFile.bookArrayList.get(i).getGenre());
-            book.setNotes(ReadWriteFile.bookArrayList.get(i).getNotes());
+            book.setIndex(ReadWriteFile.getBookArrayListBook(i).getIndex());
+            book.setTitle(ReadWriteFile.getBookArrayListBook(i).getTitle());
+            book.setAuthor(ReadWriteFile.getBookArrayListBook(i).getAuthor());
+            book.setGenre(ReadWriteFile.getBookArrayListBook(i).getGenre());
+            book.setNotes(ReadWriteFile.getBookArrayListBook(i).getNotes());
 
             book.setNotesButton(new Button("View notes"));
             book.initializeNotesButton();

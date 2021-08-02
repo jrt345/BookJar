@@ -27,7 +27,15 @@ public class ReadWriteFile {
         fileOut.close();
     }
 
-    public static ArrayList<ReadWriteBook> bookArrayList = new ArrayList<>();
+    private static ArrayList<ReadWriteBook> bookArrayList = new ArrayList<>();
+
+    public static int getBookArrayListSize() {
+        return bookArrayList.size();
+    }
+
+    public static ReadWriteBook getBookArrayListBook(int index) {
+        return bookArrayList.get(index);
+    }
 
     public static void loadData() throws IOException, ClassNotFoundException {
         FileInputStream fileIn = new FileInputStream("userbooks.dat");
