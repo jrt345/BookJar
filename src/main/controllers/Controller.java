@@ -119,7 +119,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void quitProgram(ActionEvent event) throws IOException {
-        Main.stage.close();
+        Main.closeStage();
         ReadWriteFile.saveData();
     }
 

@@ -17,7 +17,11 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static Stage stage;
+    private static Stage stage;
+
+    public static void closeStage() {
+        stage.close();
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -27,7 +31,9 @@ public class Main extends Application {
             FileOutputStream fileOut = new FileOutputStream("userbooks.dat");
             fileOut.close();
         }
+
         Parent root = FXMLLoader.load(getClass().getResource("resources/fxml/bookJar.fxml"));
+
         stage = new Stage();
         stage.setTitle("BookJar");
         stage.setScene(new Scene(root, 900, 600));
