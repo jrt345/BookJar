@@ -425,20 +425,20 @@ public class Controller implements Initializable {
         notesButton.setDisable(true);
         addButton.setDisable(true);
 
-        int isTitle;
+        int searchBy;
 
         if (genreRadioButton.isSelected()) {
-            isTitle = GENRE;
+            searchBy = GENRE;
         } else if (authorRadioButton.isSelected()) {
-            isTitle = AUTHOR;
+            searchBy = AUTHOR;
         } else if (titleRadioButton.isSelected()) {
-            isTitle = TITLE;
+            searchBy = TITLE;
         } else {
-            isTitle = TITLE;
+            searchBy = TITLE;
         }
 
         if (!searchField.getText().equals("")) {
-            swapBookTableSearch(isTitle);
+            swapBookTableSearch(searchBy);
         } else {
             titleField.setDisable(false);
             authorField.setDisable(false);
