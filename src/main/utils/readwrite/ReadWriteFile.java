@@ -10,13 +10,13 @@ public class ReadWriteFile {
     public static void saveData() throws IOException {
         ArrayList<ReadWriteBook> bookArrayList = new ArrayList<>();
 
-        for (int i = 0; i < Controller.bookArrayList.size(); i++) {
+        for (int i = 0; i < Controller.getBookArrayListSize(); i++) {
             ReadWriteBook book = new ReadWriteBook();
-            book.setIndex(Controller.bookArrayList.get(i).getIndex());
-            book.setTitle(Controller.bookArrayList.get(i).getTitle());
-            book.setAuthor(Controller.bookArrayList.get(i).getAuthor());
-            book.setGenre(Controller.bookArrayList.get(i).getGenre());
-            book.setNotes(Controller.bookArrayList.get(i).getNotes());
+            book.setIndex(Controller.getBookArrayListBook(i).getIndex());
+            book.setTitle(Controller.getBookArrayListBook(i).getTitle());
+            book.setAuthor(Controller.getBookArrayListBook(i).getAuthor());
+            book.setGenre(Controller.getBookArrayListBook(i).getGenre());
+            book.setNotes(Controller.getBookArrayListBook(i).getNotes());
             bookArrayList.add(book);
         }
 

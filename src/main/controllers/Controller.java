@@ -44,7 +44,15 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Book, Button> notesColumn;
 
-    public static final ArrayList<Book> bookArrayList = new ArrayList<>();
+    private static final ArrayList<Book> bookArrayList = new ArrayList<>();
+
+    public static int getBookArrayListSize() {
+        return bookArrayList.size();
+    }
+
+    public static Book getBookArrayListBook(int index) {
+        return bookArrayList.get(index);
+    }
 
     private void notesAlertBox(NotesController controller, Stage stage, WindowEvent windowEvent) {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Would you like to save your notes before exiting??");
