@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import main.Main;
+import main.LoadBookJar;
 import main.controllers.NotesViewerController;
 import main.utils.readwrite.ReadWriteFile;
 
@@ -21,7 +21,7 @@ public class Book {
     private static Stage stage;
 
     private void openNoteViewer() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("resources/fxml/notesViewer.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("resources/fxml/notesViewer.fxml"));
         Parent root = fxmlLoader.load();
 
         NotesViewerController notesViewerController = fxmlLoader.getController();
@@ -31,7 +31,7 @@ public class Book {
         stage = new Stage();
         stage.setTitle("Notes Viewer");
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
         stage.setScene(new Scene(root, 450, 375));
         stage.setResizable(false);
         stage.showAndWait();
