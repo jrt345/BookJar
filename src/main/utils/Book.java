@@ -108,6 +108,7 @@ public class Book {
     }
 
     public void initializeNotesButton() {
+        notesButton.setFocusTraversable(false);
         notesButton.setOnAction(event -> {
             try {
                 openNoteViewer();
