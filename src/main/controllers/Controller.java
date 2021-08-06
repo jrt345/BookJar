@@ -390,11 +390,13 @@ public class Controller implements Initializable {
         return bookList;
     }
 
-    private ObservableList<Book> getBook() {
-        try {
-            ReadWriteFile.loadData();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+    private ObservableList<Book> getBook(boolean isInitial) {
+        if (!isInitial){
+            try {
+                ReadWriteFile.loadData();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
         ObservableList<Book> bookList = FXCollections.observableArrayList();
@@ -448,7 +450,7 @@ public class Controller implements Initializable {
         } else {
             disableBookAdding(false);
 
-            bookTable.setItems(getBook());
+            bookTable.setItems(getBook(false));
         }
     }
 
@@ -461,7 +463,7 @@ public class Controller implements Initializable {
         notesColumn.setCellValueFactory(new PropertyValueFactory<>("NotesButton"));
         notesColumn.setStyle("-fx-alignment: CENTER;");
 
-        bookTable.setItems(getBook());
+        bookTable.setItems(getBook(true));
 
         if (bookArrayList.size() == 0) {
             disableContextMenu(true);
