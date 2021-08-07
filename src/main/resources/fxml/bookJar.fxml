@@ -40,7 +40,7 @@
                         </ToolBar>
                     </top>
                     <center>
-                        <TableView fx:id="bookTable" editable="true" focusTraversable="false" prefHeight="476.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="bookTable" editable="true" focusTraversable="false" onContextMenuRequested="#setContextMenu" prefHeight="476.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                             <columns>
                                 <TableColumn fx:id="indexColumn" text="No." />
                                 <TableColumn fx:id="titleColumn" text="Title" />

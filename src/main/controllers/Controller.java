@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -180,9 +181,17 @@ public class Controller implements Initializable {
         bookTable.getItems().add(bookArrayList.get(index - 1));
 
         ReadWriteFile.saveData();
+    }
 
-        if (editContext.isDisable()) {
-            disableContextMenu(false);
+    @FXML
+    private void setContextMenu(ContextMenuEvent event){
+        disableContextMenu(bookArrayList.size() == 0);
+
+        disableContextMenu(bookTable.getSelectionModel().getSelectedIndices().size() == 0);
+
+        if (bookTable.getSelectionModel().getSelectedIndices().size() > 1){
+            viewContext.setDisable(true);
+            editContext.setDisable(true);
         }
     }
 
@@ -282,17 +291,21 @@ public class Controller implements Initializable {
 
     @FXML
     private void deleteBook(ActionEvent event) throws IOException {
-        int index;
-        int selectedIndex = bookTable.getSelectionModel().getFocusedIndex();
+        int selectionSize = bookTable.getSelectionModel().getSelectedIndices().size();
 
-        if (addButton.isDisabled()) {
-            index = bookTable.getItems().get(selectedIndex).getIndex() - 1;
+        Alert alert;
+
+        if (selectionSize > 1){
+            alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to delete " +
+                    selectionSize +
+                    " books?? This process can not be undone. ");
         } else {
-            index = selectedIndex;
+            alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to delete \"" +
+                    bookTable.getItems().get(bookTable.getSelectionModel()
+                            .getSelectedIndex()).getTitle() +
+                    "\" ?? This process can not be undone. ");
         }
 
-        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to delete \"" +
-                bookArrayList.get(index).getTitle() + "\" ?? This process can not be undone. ");
         alert.setHeaderText("Confirm delete");
 
         ButtonType deleteButton = new ButtonType("Delete");
@@ -303,19 +316,33 @@ public class Controller implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get().equals(deleteButton)) {
-            Controller.index--;
-            bookArrayList.remove(index);
-            bookTable.getItems().remove(selectedIndex);
+            int[] indices = new int[selectionSize];
+            int[] tableIndices = new int[selectionSize];
 
-            for (int i = index; i < bookArrayList.size(); i++) {
-                bookArrayList.get(i).setIndex(bookArrayList.get(i).getIndex() - 1);
+            index-=selectionSize;
+            if (addButton.isDisabled()){
+                for (int i = 0;i < selectionSize;i++){
+                    tableIndices[i] = bookTable.getSelectionModel().getSelectedIndices().get(i);
+                    indices[i] = bookTable.getItems().get(tableIndices[i]).getIndex() - 1;
+                }
+            } else {
+                for (int i = 0;i < selectionSize;i++){
+                    tableIndices[i] = bookTable.getSelectionModel().getSelectedIndices().get(i);
+                    indices[i] = tableIndices[i];
+                }
+            }
+
+
+            for (int i = 0;i < indices.length;i++){
+                bookArrayList.remove(indices[i]-i);
+                bookTable.getItems().remove(tableIndices[i]-i);
+            }
+
+            for (int i = 0;i < bookArrayList.size();i++){
+                bookArrayList.get(i).setIndex(i+1);
             }
 
             ReadWriteFile.saveData();
-        }
-
-        if (bookArrayList.size() == 0) {
-            disableContextMenu(true);
         }
     }
 
@@ -449,6 +476,7 @@ public class Controller implements Initializable {
             swapBookTableSearch(searchBy);
         } else {
             disableBookAdding(false);
+            disableContextMenu(false);
 
             bookTable.setItems(getBook(false));
         }
@@ -464,6 +492,7 @@ public class Controller implements Initializable {
         notesColumn.setStyle("-fx-alignment: CENTER;");
 
         bookTable.setItems(getBook(true));
+        bookTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         if (bookArrayList.size() == 0) {
             disableContextMenu(true);
