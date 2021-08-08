@@ -1,9 +1,12 @@
 # BookJar
 
-## About BookJar & Features:
+**A program that will help store info and notes about the books you have read.**
 
-BookJar is a program that will help store info about the books you have read. 
-BookJar stores the: 
+***
+
+## BookJar Features:
+
+BookJar stores the following info about a book: 
 
 1. Title
 2. Author 
@@ -19,7 +22,7 @@ To view the notes of a book, press the "View Notes" to open them.
 
 ***
 
-### Tableview Context Menu:
+### Tableview context menu:
 
 To access the context menu, right-click on the table.
 *Note: The context menu options will be grayed out if there are no books in the table.*
@@ -45,6 +48,31 @@ by selected a different option among the three radio buttons right of the text f
 
 ## Requirements to edit source code:
 
-1. Have Java 16.0.1 or up to run the source code.
-2. Have the JavaFX 16 SDK installed.
-3. Have SceneBuilder installed to easily edit .fxml files (optional, but highly recommended).
+1. Have [Java 16.0.1](https://jdk.java.net/) to run the source code.
+2. Have the [JavaFX 16 SDK](https://gluonhq.com/products/javafx/) installed.
+3. Have [SceneBuilder](https://gluonhq.com/products/scene-builder/) installed to easily edit .fxml files (optional, but highly recommended).
+
+***
+
+## Screenshots:
+
+#### Home screen:
+<img src="screenshots/BookJar-home.png"/>
+
+#### Viewing book notes:
+<img src="screenshots/BookJar-view_notes.png"/>
+
+#### Editing a book:
+<img src="screenshots/BookJar-edit_book.png"/>
+
+#### Searching books by title:
+<img src="screenshots/BookJar-search-title.png"/>
+
+#### Searching books by author:
+<img src="screenshots/BookJar-search-author.png"/>
+
+#### Searching books by genre:
+<img src="screenshots/BookJar-search-genre.png"/>
+
+#### About box:
+<img src="screenshots/BookJar-about.png"/>
