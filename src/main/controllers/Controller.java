@@ -24,6 +24,7 @@ import main.utils.readwrite.ReadWriteFile;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -73,7 +74,7 @@ public class Controller implements Initializable {
 
         aboutBoxStage.setTitle("About BookJar");
         aboutBoxStage.initModality(Modality.APPLICATION_MODAL);
-        aboutBoxStage.getIcons().add(new Image(LoadBookJar.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
+        aboutBoxStage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
         aboutBoxStage.setScene(new Scene(root, 500, 400));
         aboutBoxStage.setResizable(false);
 
@@ -139,7 +140,7 @@ public class Controller implements Initializable {
 
         notesStage.setTitle("Notes");
         notesStage.initModality(Modality.APPLICATION_MODAL);
-        notesStage.getIcons().add(new Image(LoadBookJar.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
+        notesStage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
         notesStage.setScene(new Scene(root, 450, 375));
         notesStage.setResizable(false);
 
@@ -271,7 +272,7 @@ public class Controller implements Initializable {
 
         editBookStage.setTitle("Book Editor");
         editBookStage.initModality(Modality.APPLICATION_MODAL);
-        editBookStage.getIcons().add(new Image(LoadBookJar.class.getResourceAsStream("resources/images/bookJarLogo-200x.png")));
+        editBookStage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
         editBookStage.setScene(new Scene(root, 450, 450));
         editBookStage.setResizable(false);
 
@@ -493,9 +494,5 @@ public class Controller implements Initializable {
 
         bookTable.setItems(getBook(true));
         bookTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-        if (bookArrayList.size() == 0) {
-            disableContextMenu(true);
-        }
     }
 }
