@@ -1,5 +1,10 @@
 # BookJar
 
+<p align="center">
+  <a href="https://github.com/jrt345/BookJar/releases/"><img src="https://img.shields.io/github/v/release/jrt345/bookjar"/></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/github/license/jrt345/bookjar"/></a>
+</p>
+
 **A program that will help store info and notes about the books you have read.**
 
 ***
