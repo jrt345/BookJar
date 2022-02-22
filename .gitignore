@@ -1,6 +1,5 @@
-/BookJar.iml
 /.idea/
-/JavaFxApplication.iml
 /out/
-/gsBetsLog.ser
+/target/
 /userbooks.dat
+/BookJar.iml

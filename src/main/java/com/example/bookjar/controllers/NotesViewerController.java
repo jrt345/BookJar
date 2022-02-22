@@ -1,9 +1,9 @@
-package main.controllers;
+package com.example.bookjar.controllers;
 
+import com.example.bookjar.utils.Book;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import main.utils.Book;
 
 public class NotesViewerController {
 

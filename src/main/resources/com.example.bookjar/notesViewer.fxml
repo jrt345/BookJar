@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="376.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/16"
-            fx:controller="main.controllers.NotesViewerController">
+            fx:controller="com.example.bookjar.controllers.NotesViewerController">
     <children>
         <BorderPane prefHeight="450.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

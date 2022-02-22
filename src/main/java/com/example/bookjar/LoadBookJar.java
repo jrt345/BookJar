@@ -1,12 +1,11 @@
-package main;
+package com.example.bookjar;
 
+import com.example.bookjar.utils.readwrite.ReadWriteFile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import main.utils.readwrite.ReadWriteFile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class LoadBookJar extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage stage) throws Exception {
         try {
             ReadWriteFile.loadData();
         } catch (IOException e) {
@@ -33,12 +32,12 @@ public class LoadBookJar extends Application {
             fileOut.close();
         }
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("resources/fxml/bookJar.fxml")));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/com.example.bookjar/bookJar.fxml"));
 
-        stage = new Stage();
         stage.setTitle("BookJar");
-        stage.setScene(new Scene(root, 900, 600));
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("resources/images/bookJarLogo-200x.png"))));
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        stage.setScene(scene);
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com.example.bookjar/images/bookJarLogo-200x.png"))));
         stage.show();
 
         stage.setOnCloseRequest(e -> {
