@@ -3,6 +3,7 @@ package com.example.bookjar.controllers;
 import com.example.bookjar.LoadBookJar;
 import com.example.bookjar.utils.Book;
 import com.example.bookjar.utils.readwrite.ReadWriteFile;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,9 +59,8 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void quitProgram(ActionEvent event) throws IOException {
-        LoadBookJar.closeStage();
-        ReadWriteFile.saveData();
+    private void quitProgram(ActionEvent event) {
+        Platform.exit();
     }
 
     @FXML

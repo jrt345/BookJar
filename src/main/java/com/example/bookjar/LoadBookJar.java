@@ -17,12 +17,6 @@ public class LoadBookJar extends Application {
         launch(args);
     }
 
-    private static Stage stage;
-
-    public static void closeStage() {
-        stage.close();
-    }
-
     @Override
     public void start(Stage stage) throws Exception {
         try {
