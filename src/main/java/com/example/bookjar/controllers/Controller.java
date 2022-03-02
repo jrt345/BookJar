@@ -164,15 +164,16 @@ public class Controller implements Initializable {
     @FXML
     private void addBook(ActionEvent event) throws IOException {
         index++;
-        bookArrayList.add(new Book());
-        bookArrayList.get(index - 1).setIndex(index);
-        bookArrayList.get(index - 1).setTitle(titleField.getText());
-        bookArrayList.get(index - 1).setAuthor(authorField.getText());
-        bookArrayList.get(index - 1).setGenre(genreField.getText());
-        bookArrayList.get(index - 1).setNotes(notes);
+        Book book = new Book();
+        book.setIndex(index);
+        book.setTitle(titleField.getText());
+        book.setAuthor(authorField.getText());
+        book.setGenre(genreField.getText());
+        book.setNotes(notes);
 
-        bookArrayList.get(index - 1).setNotesButton(new Button("View notes"));
-        bookArrayList.get(index - 1).initializeNotesButton();
+        book.setNotesButton(new Button("View notes"));
+        book.initializeNotesButton();
+        bookArrayList.add(book);
 
         titleField.clear();
         authorField.clear();
@@ -390,27 +391,27 @@ public class Controller implements Initializable {
         ObservableList<Book> bookList = FXCollections.observableArrayList();
 
         if (searchBy == GENRE) {
-            for (int i = 0; i < bookArrayList.size(); i++) {
-                String identifier = bookArrayList.get(i).getGenre();
+            for (Book book : bookArrayList) {
+                String identifier = book.getGenre();
 
                 if (identifier.toLowerCase().contains(search.toLowerCase())) {
-                    bookList.add(bookArrayList.get(i));
+                    bookList.add(book);
                 }
             }
         } else if (searchBy == AUTHOR) {
-            for (int i = 0; i < bookArrayList.size(); i++) {
-                String identifier = bookArrayList.get(i).getAuthor();
+            for (Book book : bookArrayList) {
+                String identifier = book.getAuthor();
 
                 if (identifier.toLowerCase().contains(search.toLowerCase())) {
-                    bookList.add(bookArrayList.get(i));
+                    bookList.add(book);
                 }
             }
         } else {
-            for (int i = 0; i < bookArrayList.size(); i++) {
-                String identifier = bookArrayList.get(i).getTitle();
+            for (Book book : bookArrayList) {
+                String identifier = book.getTitle();
 
                 if (identifier.toLowerCase().contains(search.toLowerCase())) {
-                    bookList.add(bookArrayList.get(i));
+                    bookList.add(book);
                 }
             }
         }
