@@ -1,8 +1,13 @@
 package com.example.bookjar.utils.readwrite;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class ReadWriteBook implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 2406571069511999211L;
+
     private int index;
     private String title;
     private String author;
