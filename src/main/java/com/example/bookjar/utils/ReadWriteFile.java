@@ -1,5 +1,6 @@
 package com.example.bookjar.utils;
 
+import com.example.bookjar.utils.readwrite.ReadWriteBook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class ReadWriteFile {
     }
 
     public static void loadData() throws IOException, ClassNotFoundException {
-        FileInputStream fileIn = new FileInputStream("userbooks.dat");
+        FileInputStream fileIn = new FileInputStream(System.getProperty("user.dir").concat("\\userbooks.dat"));
         ObjectInputStream in = new ObjectInputStream(fileIn);
         bookArrayList = (ArrayList<ReadWriteBook>) in.readObject();
         in.close();
