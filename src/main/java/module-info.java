@@ -1,6 +1,7 @@
 module com.example.bookJar {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.web;
 
     opens com.example.bookjar to javafx.fxml;
     exports com.example.bookjar;
