@@ -1,4 +1,4 @@
-package com.example.bookjar.utils.readwrite;
+package com.example.bookjar.utils;
 
 import java.io.Serial;
 import java.io.Serializable;
