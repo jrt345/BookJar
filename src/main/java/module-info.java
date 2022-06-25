@@ -7,8 +7,11 @@ module com.example.bookJar {
     exports com.example.bookjar;
     opens com.example.bookjar.controllers to javafx.fxml;
     exports com.example.bookjar.controllers;
+    opens com.example.bookjar.library to javafx.fxml;
+    exports com.example.bookjar.library;
     opens com.example.bookjar.utils to javafx.fxml;
     exports com.example.bookjar.utils;
-    exports com.example.bookjar.utils.readwrite;
     opens com.example.bookjar.utils.readwrite to javafx.fxml;
+    exports com.example.bookjar.utils.readwrite;
+
 }
