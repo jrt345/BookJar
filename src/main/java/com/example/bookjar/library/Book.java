@@ -19,7 +19,7 @@ public class Book implements Serializable {
         this.description = "";
         this.genre = "";
         this.tags = new ArrayList<>();
-        this.chapters = new ArrayList<>();
+        this.chapters = null;
     }
 
     public Book(String title) {
@@ -28,7 +28,7 @@ public class Book implements Serializable {
         this.description = "";
         this.genre = "";
         this.tags = new ArrayList<>();
-        this.chapters = new ArrayList<>();
+        this.chapters = null;
     }
 
     public String getTitle() {
