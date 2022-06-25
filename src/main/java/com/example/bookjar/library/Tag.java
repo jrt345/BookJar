@@ -4,6 +4,10 @@ public class Tag {
 
     private String string;
 
+    public Tag(String string) {
+        this.string = string;
+    }
+
     public String getString() {
         return string;
     }
