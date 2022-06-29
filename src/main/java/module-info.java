@@ -11,7 +11,4 @@ module com.example.bookJar {
     exports com.example.bookjar.library;
     opens com.example.bookjar.utils to javafx.fxml;
     exports com.example.bookjar.utils;
-    opens com.example.bookjar.utils.readwrite to javafx.fxml;
-    exports com.example.bookjar.utils.readwrite;
-
 }
