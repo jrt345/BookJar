@@ -1,4 +1,4 @@
-package com.example.bookjar.library;
+package main.library;
 
 import java.io.Serializable;
 

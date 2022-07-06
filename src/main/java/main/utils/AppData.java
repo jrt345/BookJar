@@ -1,6 +1,6 @@
-package com.example.bookjar.utils;
+package main.utils;
 
-import com.example.bookjar.library.Book;
+import main.library.Book;
 
 import java.io.*;
 import java.util.regex.Pattern;

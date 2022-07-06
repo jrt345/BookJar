@@ -3,12 +3,14 @@ module com.example.bookJar {
     requires javafx.fxml;
     requires javafx.web;
 
-    opens com.example.bookjar to javafx.fxml;
-    exports com.example.bookjar;
-    opens com.example.bookjar.controllers to javafx.fxml;
-    exports com.example.bookjar.controllers;
-    opens com.example.bookjar.library to javafx.fxml;
-    exports com.example.bookjar.library;
-    opens com.example.bookjar.utils to javafx.fxml;
-    exports com.example.bookjar.utils;
+    opens main to javafx.fxml;
+    exports main;
+    opens main.controllers to javafx.fxml;
+    exports main.controllers;
+    opens main.library to javafx.fxml;
+    exports main.library;
+    opens main.utils to javafx.fxml;
+    exports main.utils;
+    opens main.utils.readwrite to javafx.base;
+    exports main.utils.readwrite;
 }

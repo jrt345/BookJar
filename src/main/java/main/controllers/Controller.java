@@ -1,4 +1,4 @@
-package com.example.bookjar.controllers;
+package main.controllers;
 
 import javafx.fxml.Initializable;
 
