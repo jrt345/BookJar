@@ -1,0 +1,27 @@
+#leftSideBar {
+    -fx-background-color: #3F7C85;
+}
+
+#leftSideBarButton {
+    -fx-background-color: #3F7C85;
+}
+
+#leftSideBarButton:hover {
+    -fx-background-color: #4E9BA6;
+}
+
+#leftSideBarButton:pressed {
+    -fx-background-color: #3F7C85;
+}
+
+#addBookButton {
+    -fx-background-color: #FF5F5D;
+}
+
+#addBookButton:hover {
+    -fx-background-color: #FF9B99;
+}
+
+#addBookButton:pressed {
+    -fx-background-color: #FF5F5D;
+}

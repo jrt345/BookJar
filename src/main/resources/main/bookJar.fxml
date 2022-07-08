@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.Controller">
     <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -13,20 +13,36 @@
                <top>
                   <AnchorPane prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="230.0" layoutY="5.0" prefHeight="50.0" prefWidth="190.0" text="Library" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0">
-                           <font>
-                              <Font name="Trebuchet MS Bold" size="25.0" />
-                           </font>
-                        </Label>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="16.0" prefHeight="40.0" prefWidth="680.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TextField prefHeight="30.0" prefWidth="410.0" promptText="Search" HBox.hgrow="SOMETIMES" />
+                              <ChoiceBox prefHeight="30.0" prefWidth="120.0" />
+                              <Button id="addBookButton" minHeight="30.0" mnemonicParsing="false" prefWidth="100.0" text="Add Book">
+                                 <graphic>
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/add-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </AnchorPane>
                </top>
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ScrollPane fitToWidth="true" layoutX="255.0" layoutY="153.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                        <ScrollPane fitToWidth="true" layoutX="255.0" layoutY="28.0" prefHeight="507.0" prefWidth="700.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                            <content>
-                              <VBox prefHeight="200.0" prefWidth="100.0" />
+                              <VBox prefHeight="200.0" prefWidth="698.0" />
                            </content>
                         </ScrollPane>
                      </children>
@@ -35,11 +51,11 @@
               </BorderPane>
          </center>
          <left>
-            <AnchorPane prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+            <AnchorPane id="leftSideBar" prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                <children>
-                          <Label layoutY="549.0" prefHeight="35.0" prefWidth="159.0" text="Version 2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                          <Label layoutY="549.0" prefHeight="35.0" prefWidth="159.0" text="Version 2.0" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                               <font>
-                                  <Font name="Trebuchet MS Bold" size="25.0" />
+                                  <Font name="Segoe UI Bold" size="25.0" />
                               </font>
                      <padding>
                         <Insets bottom="5.0" left="10.0" />
@@ -49,9 +65,9 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="20.0" prefHeight="50.0" prefWidth="190.0" text="BookJar" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="20.0" prefHeight="50.0" prefWidth="190.0" text="BookJar" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
-                                    <Font name="Trebuchet MS Bold" size="35.0" />
+                                    <Font name="Segoe UI Bold" size="35.0" />
                                  </font>
                               </Label>
                               <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="37.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
@@ -68,7 +84,22 @@
                            </padding>
                         </AnchorPane>
                         <AnchorPane prefWidth="250.0" />
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="New Book">
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="Library" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/books-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Button>
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="Settings" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -76,10 +107,14 @@
                               <Insets left="10.0" />
                            </padding>
                            <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/settings-icon.png" />
+                                 </image>
+                              </ImageView>
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="Settings">
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="GitHub" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -87,10 +122,14 @@
                               <Insets left="10.0" />
                            </padding>
                            <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/github-icon.png" />
+                                 </image>
+                              </ImageView>
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="GitHub">
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="About" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -98,10 +137,14 @@
                               <Insets left="10.0" />
                            </padding>
                            <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/about-icon.png" />
+                                 </image>
+                              </ImageView>
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="About">
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="Update Available" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -109,18 +152,11 @@
                               <Insets left="10.0" />
                            </padding>
                            <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="Update Available">
-                           <font>
-                              <Font name="Segoe UI Bold" size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                           <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/download-icon.png" />
+                                 </image>
+                              </ImageView>
                            </graphic>
                         </Button>
                      </children>
