@@ -1,7 +1,7 @@
-package com.example.bookjar.utils.readwrite;
+package main.utils.readwrite;
 
 
-import com.example.bookjar.controllers.Controller;
+import main.controllers.Controller;
 
 import java.io.*;
 import java.util.ArrayList;

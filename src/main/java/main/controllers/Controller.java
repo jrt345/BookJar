@@ -1,8 +1,5 @@
-package com.example.bookjar.controllers;
+package main.controllers;
 
-import com.example.bookjar.LoadBookJar;
-import com.example.bookjar.utils.Book;
-import com.example.bookjar.utils.readwrite.ReadWriteFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +17,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import main.LoadBookJar;
+import main.utils.Book;
+import main.utils.readwrite.ReadWriteFile;
 
 import java.io.IOException;
 import java.net.URL;
@@ -65,7 +65,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void about(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/com.example.bookjar/aboutBox.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/main/aboutBox.fxml"));
         Parent root = fxmlLoader.load();
 
         AboutBoxController aboutBoxController = fxmlLoader.getController();
@@ -74,7 +74,7 @@ public class Controller implements Initializable {
 
         aboutBoxStage.setTitle("About BookJar");
         aboutBoxStage.initModality(Modality.APPLICATION_MODAL);
-        aboutBoxStage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("/com.example.bookjar/images/bookJarLogo-200x.png"))));
+        aboutBoxStage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("/main/images/bookJarLogo-200x.png"))));
         aboutBoxStage.setScene(new Scene(root, 500, 400));
         aboutBoxStage.setResizable(false);
 
@@ -127,7 +127,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void openNotes(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/com.example.bookjar/notes.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/main/notes.fxml"));
         Parent root = fxmlLoader.load();
 
         NotesController notesController = fxmlLoader.getController();
@@ -140,7 +140,7 @@ public class Controller implements Initializable {
 
         notesStage.setTitle("Notes");
         notesStage.initModality(Modality.APPLICATION_MODAL);
-        notesStage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("/com.example.bookjar/images/bookJarLogo-200x.png"))));
+        notesStage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("/main/images/bookJarLogo-200x.png"))));
         notesStage.setScene(new Scene(root, 450, 375));
         notesStage.setResizable(false);
 
@@ -259,7 +259,7 @@ public class Controller implements Initializable {
             index = selectedIndex;
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/com.example.bookjar/bookEditor.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/main/bookEditor.fxml"));
         Parent root = fxmlLoader.load();
 
         BookEditorController bookEditorController = fxmlLoader.getController();
@@ -272,7 +272,7 @@ public class Controller implements Initializable {
 
         editBookStage.setTitle("Book Editor");
         editBookStage.initModality(Modality.APPLICATION_MODAL);
-        editBookStage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("/com.example.bookjar/images/bookJarLogo-200x.png"))));
+        editBookStage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("/main/images/bookJarLogo-200x.png"))));
         editBookStage.setScene(new Scene(root, 450, 450));
         editBookStage.setResizable(false);
 

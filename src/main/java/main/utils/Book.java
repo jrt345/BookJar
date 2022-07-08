@@ -1,8 +1,5 @@
-package com.example.bookjar.utils;
+package main.utils;
 
-import com.example.bookjar.LoadBookJar;
-import com.example.bookjar.controllers.NotesViewerController;
-import com.example.bookjar.utils.readwrite.ReadWriteFile;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import main.LoadBookJar;
+import main.controllers.NotesViewerController;
+import main.utils.readwrite.ReadWriteFile;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -21,7 +21,7 @@ public class Book {
     private static Stage stage;
 
     private void openNoteViewer() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/com.example.bookjar/notesViewer.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/main/notesViewer.fxml"));
         Parent root = fxmlLoader.load();
 
         NotesViewerController notesViewerController = fxmlLoader.getController();
@@ -31,7 +31,7 @@ public class Book {
         stage = new Stage();
         stage.setTitle("Notes Viewer");
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("/com.example.bookjar/images/bookJarLogo-200x.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(LoadBookJar.class.getResourceAsStream("/main/images/bookJarLogo-200x.png"))));
         stage.setScene(new Scene(root, 450, 375));
         stage.setResizable(false);
         stage.showAndWait();

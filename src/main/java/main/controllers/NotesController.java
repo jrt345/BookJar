@@ -1,4 +1,4 @@
-package com.example.bookjar.controllers;
+package main.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

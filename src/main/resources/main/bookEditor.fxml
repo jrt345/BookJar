@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="450.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/16"
-            fx:controller="com.example.bookjar.controllers.BookEditorController">
+            fx:controller="main.controllers.BookEditorController">
     <children>
         <BorderPane prefHeight="450.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

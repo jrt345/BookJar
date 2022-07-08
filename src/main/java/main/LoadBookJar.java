@@ -1,11 +1,11 @@
-package com.example.bookjar;
+package main;
 
-import com.example.bookjar.utils.readwrite.ReadWriteFile;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import main.utils.readwrite.ReadWriteFile;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,13 +32,14 @@ public class LoadBookJar extends Application {
             fileOut.close();
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/com.example.bookjar/bookJar.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoadBookJar.class.getResource("/main/bookJar.fxml"));
 
         stage.setTitle("BookJar");
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         stage.setScene(scene);
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com.example.bookjar/images/bookJarLogo-200x.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/main/images/bookJarLogo-200x.png"))));
         stage.show();
+        LoadBookJar.stage = stage;
 
         stage.setOnCloseRequest(e -> {
             try {
