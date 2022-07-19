@@ -6,38 +6,35 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="376.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/16"
-            fx:controller="main.controllers.NotesViewerController">
+<AnchorPane prefHeight="376.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.NotesViewerController">
     <children>
-        <BorderPane prefHeight="450.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane prefHeight="450.0" prefWidth="450.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
                 <AnchorPane prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Label alignment="CENTER" layoutX="149.0" layoutY="10.0" text="Notes"
-                               AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="149.0"
-                               AnchorPane.rightAnchor="148.0" AnchorPane.topAnchor="10.0">
-                            <font>
-                                <Font name="Trebuchet MS Bold" size="35.0"/>
-                            </font>
-                        </Label>
+                  <HBox alignment="CENTER" layoutX="149.0" layoutY="10.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                              <Label alignment="CENTER" text="Notes">
+                                  <font>
+                                      <Font name="Trebuchet MS Bold" size="35.0" />
+                                  </font>
+                              </Label>
+                     </children>
+                  </HBox>
                     </children>
                 </AnchorPane>
             </top>
             <bottom>
-                <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="450.0"
-                         BorderPane.alignment="CENTER">
+                <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="450.0" BorderPane.alignment="CENTER">
                     <items>
-                        <Button mnemonicParsing="false" onAction="#exitNotesView" prefWidth="50.0" text="Exit"/>
+                        <Button minWidth="50.0" mnemonicParsing="false" onAction="#exitNotesView" text="Exit" />
                     </items>
                 </ToolBar>
             </bottom>
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <TextArea fx:id="notesAreaView" editable="false" layoutX="125.0" layoutY="78.0"
-                                  prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="5.0"
-                                  AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0"/>
+                        <TextArea fx:id="notesAreaView" editable="false" layoutX="125.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                     </children>
                 </AnchorPane>
             </center>
