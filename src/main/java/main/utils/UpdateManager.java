@@ -4,14 +4,18 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import main.Main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Objects;
 
 public class UpdateManager {
 
@@ -67,6 +71,8 @@ public class UpdateManager {
 
     public static void showUpdateDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("BookJar");
+        ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image(Objects.requireNonNull(Main.class.getResourceAsStream("/main/images/bookJarLogo-200x.png"))));
         alert.setHeaderText("Update available!");
 
         VBox primaryVbox = new VBox();
