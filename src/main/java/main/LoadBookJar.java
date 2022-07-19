@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import main.utils.UpdateManager;
 import main.utils.readwrite.ReadWriteFile;
 
 import java.io.FileOutputStream;
@@ -40,6 +41,10 @@ public class LoadBookJar extends Application {
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/main/images/bookJarLogo-200x.png"))));
         stage.show();
         LoadBookJar.stage = stage;
+
+        if (UpdateManager.isUpdateAvailable()) {
+            UpdateManager.showUpdateDialog();
+        }
 
         stage.setOnCloseRequest(e -> {
             try {

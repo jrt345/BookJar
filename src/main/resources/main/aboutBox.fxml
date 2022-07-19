@@ -9,22 +9,26 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AboutBoxController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AboutBoxController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <AnchorPane prefHeight="75.0" prefWidth="500.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="185.0" layoutY="9.0" text="BookJar" textAlignment="CENTER" AnchorPane.bottomAnchor="8.5" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="8.5">
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="50.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="127.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.5" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="315.0" AnchorPane.topAnchor="8.5">
-                     <image>
-                        <Image url="@images/bookJarLogo-200x.png" />
-                     </image>
-                  </ImageView>
+                  <HBox alignment="CENTER" layoutX="127.0" layoutY="8.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/bookJarLogo-200x.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="BookJar" textAlignment="CENTER">
+                           <font>
+                              <Font name="Trebuchet MS Bold" size="50.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </top>
@@ -32,7 +36,7 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Separator layoutX="199.0" layoutY="4.0" prefWidth="200.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
-                  <TextArea editable="false" focusTraversable="false" layoutX="50.0" layoutY="23.0" prefHeight="240.0" prefWidth="400.0" text="BookJar&#10;Version 1.0.0&#10;&#10;Build with:&#10;Java 16, OpenJDK.&#10;JavaFX 16, Gluon.&#10;&#10;Copyright © 2021 jrt345. All rights reserved.&#10;&#10;BookJar is licensed under the MIT License:&#10;&#10;Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:&#10;&#10;The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&#10;&#10;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE." wrapText="true" />
+                  <TextArea editable="false" focusTraversable="false" layoutX="50.0" layoutY="23.0" prefHeight="240.0" prefWidth="400.0" text="BookJar&#10;Version 1.1.0&#10;&#10;Build with:&#10;Java 17, OpenJDK.&#10;JavaFX 17, Gluon.&#10;&#10;Copyright © 2021-2022 jrt345. All rights reserved.&#10;&#10;BookJar is licensed under the MIT License:&#10;&#10;Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:&#10;&#10;The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&#10;&#10;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE." wrapText="true" />
                </children>
             </AnchorPane>
          </center>

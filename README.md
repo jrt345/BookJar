@@ -1,4 +1,4 @@
-<!--Version-1.0.0-->
+<!--Version-1.1.0-->
 
 # BookJar
 
@@ -55,9 +55,8 @@ by selected a different option among the three radio buttons right of the text f
 
 ## Requirements to edit source code:
 
-1. Have [Java 16.0.1](https://jdk.java.net/) to run the source code.
-2. Have the [JavaFX 16 SDK](https://gluonhq.com/products/javafx/) installed.
-3. Have [SceneBuilder](https://gluonhq.com/products/scene-builder/) installed to easily edit .fxml files (optional, but highly recommended).
+1. Have [Java 17](https://jdk.java.net/) to run the source code.
+2. Have [SceneBuilder](https://gluonhq.com/products/scene-builder/) installed to easily edit .fxml files.
 
 ***
 
