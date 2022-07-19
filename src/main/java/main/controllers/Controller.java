@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import main.LoadBookJar;
 import main.utils.Book;
+import main.utils.UpdateManager;
 import main.utils.readwrite.ReadWriteFile;
 
 import java.io.IOException;
@@ -480,6 +481,13 @@ public class Controller implements Initializable {
             disableContextMenu(false);
 
             bookTable.setItems(getBook(false));
+        }
+    }
+
+    @FXML
+    private void checkForUpdate(ActionEvent event) {
+        if (UpdateManager.isUpdateAvailable()) {
+            UpdateManager.showUpdateDialog();
         }
     }
 
