@@ -84,7 +84,7 @@
                            </padding>
                         </AnchorPane>
                         <AnchorPane prefWidth="250.0" />
-                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="Library" textFill="WHITE">
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#library" prefHeight="50.0" prefWidth="341.0" text="Library" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -99,7 +99,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Button>
-                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="Settings" textFill="WHITE">
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#settings" prefHeight="50.0" prefWidth="341.0" text="Settings" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -114,7 +114,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="GitHub" textFill="WHITE">
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#github" prefHeight="50.0" prefWidth="341.0" text="GitHub" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -129,7 +129,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="About" textFill="WHITE">
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#about" prefHeight="50.0" prefWidth="341.0" text="About" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -144,7 +144,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="341.0" text="Update Available" textFill="WHITE">
+                        <Button id="leftSideBarButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onAction="#update" prefHeight="50.0" prefWidth="341.0" text="Update Available" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
