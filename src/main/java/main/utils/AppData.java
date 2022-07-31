@@ -68,20 +68,14 @@ public class AppData {
     }
 
     public static void serialize(String folder, Book book) throws IOException {
-        FileOutputStream fileOut = new FileOutputStream(LIBRARY_DIRECTORY.concat(folder + "\\book.dat"));
-        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-        out.writeObject(book);
-        out.close();
-        fileOut.close();
+        try (FileOutputStream fileOut = new FileOutputStream(LIBRARY_DIRECTORY.concat(folder + "\\book.dat")); ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(book);
+        }
     }
 
     public static Book deserialize(String folder) throws IOException, ClassNotFoundException {
-        FileInputStream fileIn = new FileInputStream(LIBRARY_DIRECTORY.concat(folder + "\\book.dat"));
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-        Book book = (Book) in.readObject();
-        in.close();
-        fileIn.close();
-
-        return book;
+        try (FileInputStream fileIn = new FileInputStream(LIBRARY_DIRECTORY.concat(folder + "\\book.dat")); ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            return (Book) in.readObject();
+        }
     }
 }
